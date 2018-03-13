@@ -1,4 +1,4 @@
-#Vaalikone
+# Vaalikone
 
 Ajatuksena tehdä vaalikone, jossa kysymykset ja vastaukset haetaan eduskunnan sivuilta. Ajatuksena on tarkastella aluksi vain puoluekantaa, mutta jos innostun, lisään vaalikoneeseen myös tiedot äänestyksistä edustajittain.
 
