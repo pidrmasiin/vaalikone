@@ -8,4 +8,12 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 
 * [Siirretään herokuun myöhemmin]()
 
+# työaikakirjanpito
+
+| päivä | aika | mitä tein  |
+| :----:|:-----| :-----|
+| 12.3. | 3,5    | Ympäristön pystyttäminen + html dokumentin käsittelyn opettelu|
+| 13.3. | 5    | Samaa kuin eilen + parserin opettelua ja bootstrapin käyttöönotto |
+|
+
 
