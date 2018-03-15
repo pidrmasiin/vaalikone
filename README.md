@@ -6,14 +6,16 @@ Toimintaperiaate on siis seuraavanlainen, lisään eduskunnassa äänestetyt kys
 
 Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan sivuilta table-elementin, josta puolueiden kannat kuhunkin kysymykseen tulevat ilmit. 
 
-* [Siirretään herokuun myöhemmin]()
+* [Linkki herokuun](https://vaalikoneisto.herokuapp.com/)
+* [Linkki backiin](https://github.com/pidrmasiin/vaalikoneback)
 
 # työaikakirjanpito
 
 | päivä | aika | mitä tein  |
 | :----:|:-----| :-----|
-| 12.3. | 3,5    | Ympäristön pystyttäminen + html dokumentin käsittelyn opettelu|
-| 13.3. | 5    | Samaa kuin eilen + parserin opettelua ja bootstrapin käyttöönotto |
-|
+| 12.3. | 3,5  | Ympäristön pystyttäminen + html dokumentin käsittelyn opettelu|
+| 13.3. | 5	| Samaa kuin eilen + parserin opettelua ja bootstrapin käyttöönotto |
+| 14.4  | 4	| Backend ja Heroku pystyyn ja routerit frontiin ja backiin |
+| 15.3  | 1,5	| Mlab ja Post-metodin säätöä |
 
 

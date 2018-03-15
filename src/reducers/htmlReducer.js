@@ -1,17 +1,32 @@
+const intialState = {
+  puolueet: '',
+  edustajat: ''
+}
 
-const reducer = (store = '', action) => {
-    if (action.type === 'INITIALIZE') {
-      store = action.html 
-      return store
-  }
+const reducer = (store = intialState, action) => {
+    if (action.type === 'HTML_PUOLUEET') {
+      return {...store, puolueet: action.html}
+    }if (action.type === 'HTML_EDUSTAJAT') {
+      return {...store, edustajat: action.html}
+    }
+
 
   return store
 }
 
-export const initialize = (html) => {
+export const htmlPuolueet = (html) => {
   return async (dispatch) => {
     dispatch({
-      type: 'INITIALIZE',
+      type: 'HTML_PUOLUEET',
+      html
+    })
+  }
+}
+
+export const htmlEdustajat = (html) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'HTML_EDUSTAJAT',
       html
     })
   }

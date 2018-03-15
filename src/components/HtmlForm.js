@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { initialize } from '../reducers/htmlReducer'
-import { addPuolueet, addDetails } from '../reducers/kysymysReducer'
+import { htmlEdustajat, htmlPuolueet } from '../reducers/htmlReducer'
+import { addPuolueet, addDetails, addEdustajat } from '../reducers/kysymysReducer'
 import { Button } from 'react-bootstrap'
 
 class HtmlForm extends React.Component {
 
   handlePuolueet = (e) => {
-
     var parser = new DOMParser();
-    var doc = parser.parseFromString(this.props.html, "text/html");
+    var doc = parser.parseFromString(this.props.html.puolueet, "text/html");
     var puolueet = []
-    if(this.props.html !== ''){
-    const rows = doc.getElementById("myTable").rows;
+    console.log('puolueet', doc)
+    if(this.props.html.puolueet !== ''){
+    const rows = doc.getElementsByTagName("TBODY")[0].rows;
+    
     for (let i = 1; i < rows.length; i += 1) {
       const puolue = {
         nimi: rows[i].cells[0].innerHTML,
@@ -33,10 +34,34 @@ class HtmlForm extends React.Component {
     this.props.addPuolueet(puolueet)
   }
 
+  handleEdustajat = (e) => {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(this.props.html.edustajat, "text/html");
+    var edustajat = []
+    if(this.props.html.edustajat !== ''){
+    const rows = doc.getElementsByTagName("TBODY")[0].rows;
+    for (let i = 1; i < rows.length; i += 1) {
+      const edustaja = {
+        nimi: rows[i].cells[0].innerHTML.replace(/\s/g, ''),
+        kanta: rows[i].cells[1].innerHTML.replace(/\s/g, ''),
+        
+      };
+      if (edustajat.filter(p => p.nimi === edustaja.nimi).length === 0) {
+        edustajat.push(edustaja)
+        }
+      }
+    }
+    this.props.addEdustajat(edustajat)
+  }
+
   handleHtml = (e) => {
     e.preventDefault()
-    const content = e.target.html.value
-    this.props.initialize(content)
+    const edustajat = e.target.htmlEdustajat.value
+    this.props.htmlEdustajat(edustajat)
+    const puolueet = e.target.htmlPuolueet.value
+    this.props.htmlPuolueet(puolueet)
+    e.target.htmlPuolueet.value = ''
+    e.target.htmlEdustajat.value = ''
   }
 
   handleDetails = (e) => {
@@ -56,6 +81,7 @@ class HtmlForm extends React.Component {
     this.handleDetails(e)
     await this.handleHtml(e)
     this.handlePuolueet()
+    this.handleEdustajat()
     
   }
 
@@ -66,24 +92,34 @@ class HtmlForm extends React.Component {
         <form onSubmit={this.onSubmit} id='htmlform'>
         <h2>Lisää kysymys</h2>
           <div className="form-group">
+          <b>Kirjoita alle äänestyksen kohteen oleva kysmys</b>
           <input type="text" className="form-control" placeholder="kysymys" name='kysymys'/>
           </div>
           <div className="form-group">
+          <b>Kirjoita  alle tarkempi kuvaus kysymyksestä</b>
           <input type="text" className="form-control" placeholder="selitys" name='selitys'/>
           </div>
           <div className="form-group">
+          <b>Kirjoita  alle linkki edukunnan sivuille </b>
            <input type="text" className="form-control" placeholder="url" name='url'/>
           </div>
           <div className="form-group">
           <br></br>
-          <p>Kopio alle table-elementti html muodossa äänestyksestä eduskuntaryhmittäin ja paina sitten create<br></br>
-          <b>Huom! </b>Lisää myös tbody tagiin: id="myTable"</p>
-          <p><Button bsStyle="success"  type="submit">create</Button></p>
+          <b>Kopio alle eduskunnan sivuilta html-muotoinen table-elementti, jossa tiedot äänestyksen tuloksista eduskuntaryhmittäin. </b>
           <textarea type="text" className="form-control" 
-          placeholder="<table><tbody id='myTable'><tr>..<tr></tbody></table>" 
-          rows="50" cols="100" name="html" form='htmlform'>
+          placeholder="<table><tbody>...</tbody></table>" 
+          rows="10" cols="20" name="htmlPuolueet" form='htmlform'>
           </textarea>
           </div>
+          <div>
+          <b>Kopio alle eduskunnan sivuilta html-muotoinen table-elementti, jossa tiedot äänestyksen tuloksista edustajittain.</b>
+          <textarea type="text" className="form-control" 
+          placeholder="<table><tbody>...</tbody></table>" 
+          rows="10" cols="20" name="htmlEdustajat" form='htmlform'>
+          </textarea>
+          </div>
+          <br></br>
+          <p><Button bsStyle="success"  type="submit">create</Button></p>
           
         </form>
       </div>
@@ -97,4 +133,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { initialize, addPuolueet, addDetails })(HtmlForm)
+export default connect(
+  mapStateToProps, 
+  { htmlEdustajat, htmlPuolueet, addPuolueet, addEdustajat, addDetails }
+)(HtmlForm)
