@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import HtmlForm from './components/HtmlForm'
 import Home from './components/Home'
+import Notification from './components/Notification'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 
 const Menu = () => {
@@ -30,6 +31,7 @@ class App extends React.Component {
     return (
       <div  className="container">
       <h1>Vaalikone</h1>
+        <Notification/>
         <Router>
           <div>
             <Menu/>

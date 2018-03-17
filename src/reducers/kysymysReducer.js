@@ -3,14 +3,19 @@ const initialState= {
   selitys: '',
   url: '',
   puolueet: [],
-  edustajat:[]
+  edustajat:[],
+  vuosi: ''
 }
 
 const reducer = (store = initialState, action) => {
     if (action.type === 'ADD_PUOLUE') {
       return {...store, puolueet: action.puolueet}
     }if (action.type === 'ADD_DETAILS') {
-      return {...store, kysymys: action.details.kysymys, selitys: action.details.selitys, url: action.details.url}
+      return {...store, 
+        kysymys: action.details.kysymys, 
+        selitys: action.details.selitys, 
+        url: action.details.url, 
+        vuosi: action.details.vuosi}
     }if (action.type === 'ADD_EDUSTAJAT') {
       return {...store, edustajat: action.edustajat}
     }

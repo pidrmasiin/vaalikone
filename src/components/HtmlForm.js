@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import FormInput from './FormInput'
 import { htmlEdustajat, htmlPuolueet } from '../reducers/htmlReducer'
 import { addPuolueet, addDetails, addEdustajat } from '../reducers/kysymysReducer'
+import { notifyCreation } from '../reducers/notifyReducer'
 import { Button } from 'react-bootstrap'
 
 class HtmlForm extends React.Component {
@@ -31,7 +33,12 @@ class HtmlForm extends React.Component {
         }
       }
     }
+    console.log('puolueet', puolueet.length)
+    if(puolueet.length > 5 && puolueet.length < 10){
+    this.props.notifyCreation("Puolueiden kannat lisätty", 5)
+    console.log('notify', this.props.notify)
     this.props.addPuolueet(puolueet)
+    }
   }
 
   handleEdustajat = (e) => {
@@ -69,12 +76,14 @@ class HtmlForm extends React.Component {
     const details = {
       url: e.target.url.value,
       selitys: e.target.selitys.value,
-      kysymys: e.target.kysymys.value
+      kysymys: e.target.kysymys.value,
+      vuosi: e.target.vuosi.value
     }
     this.props.addDetails(details)
     e.target.url.value = ''
     e.target.selitys.value = ''
     e.target.kysymys.value = ''
+    e.target.vuosi.value = ''
   }
 
   onSubmit = async (e) => {
@@ -87,22 +96,15 @@ class HtmlForm extends React.Component {
 
   render() {
     console.log('this.props', this.props.kysymys)
+
     return (
       <div className='container'>
         <form onSubmit={this.onSubmit} id='htmlform'>
         <h2>Lisää kysymys</h2>
-          <div className="form-group">
-          <b>Kirjoita alle äänestyksen kohteen oleva kysmys</b>
-          <input type="text" className="form-control" placeholder="kysymys" name='kysymys'/>
-          </div>
-          <div className="form-group">
-          <b>Kirjoita  alle tarkempi kuvaus kysymyksestä</b>
-          <input type="text" className="form-control" placeholder="selitys" name='selitys'/>
-          </div>
-          <div className="form-group">
-          <b>Kirjoita  alle linkki edukunnan sivuille </b>
-           <input type="text" className="form-control" placeholder="url" name='url'/>
-          </div>
+          <FormInput label="Kirjoita alle äänestyksen kohteen oleva kysymys" placeholder="kysymys" name='kysymys'/>
+          <FormInput label="Tapahtuma vuosi" placeholder="2018" name='vuosi'/>
+          <FormInput label="Tarkempi kuvaus kysymyksestä" placeholder="selitys" name='selitys'/>
+          <FormInput label="Linkki edukunnan sivuille" placeholder="url" name='url'/>
           <div className="form-group">
           <br></br>
           <b>Kopio alle eduskunnan sivuilta html-muotoinen table-elementti, jossa tiedot äänestyksen tuloksista eduskuntaryhmittäin. </b>
@@ -129,11 +131,12 @@ class HtmlForm extends React.Component {
 const mapStateToProps = (state) => {
   return {
    html: state.html,
-   kysymys: state.kysymys
+   kysymys: state.kysymys,
+   notify: state.notify
   }
 }
 
 export default connect(
   mapStateToProps, 
-  { htmlEdustajat, htmlPuolueet, addPuolueet, addEdustajat, addDetails }
+  { htmlEdustajat, htmlPuolueet, addPuolueet, addEdustajat, addDetails, notifyCreation }
 )(HtmlForm)
