@@ -18,4 +18,5 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 | 14.4  | 4	| Backend ja Heroku pystyyn ja routerit frontiin ja backiin |
 | 15.3  | 1,5	| Mlab ja Post-metodin säätöä |
 |16.3	| 1	| Notification & FormInput components |
+|19.3	| 1,5	| Notification style + TextArea component + service start |
 

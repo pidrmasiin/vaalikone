@@ -36,7 +36,7 @@ class App extends React.Component {
           <div>
             <Menu/>
             <Route exact path="/" render={() => <Home />} />
-            <Route path="/lisaa" render={() => <HtmlForm />} />
+            <Route path="/lisaa" render={({ history }) => <HtmlForm history={history}/>} />
           </div>
         </Router>
       </div>

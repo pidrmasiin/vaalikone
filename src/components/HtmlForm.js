@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import FormInput from './FormInput'
+import FormInput from './form/FormInput'
+import TextArea from './form/TextArea'
 import { htmlEdustajat, htmlPuolueet } from '../reducers/htmlReducer'
 import { addPuolueet, addDetails, addEdustajat } from '../reducers/kysymysReducer'
 import { notifyCreation } from '../reducers/notifyReducer'
 import { Button } from 'react-bootstrap'
+import Notification from './Notification'
 
 class HtmlForm extends React.Component {
 
@@ -15,7 +17,6 @@ class HtmlForm extends React.Component {
     console.log('puolueet', doc)
     if(this.props.html.puolueet !== ''){
     const rows = doc.getElementsByTagName("TBODY")[0].rows;
-    
     for (let i = 1; i < rows.length; i += 1) {
       const puolue = {
         nimi: rows[i].cells[0].innerHTML,
@@ -25,8 +26,6 @@ class HtmlForm extends React.Component {
         poissa: Number(rows[i].cells[4].innerHTML.replace(/\s/g, '')),
       };
       puolue.kanta = Object.keys(puolue).reduce((a, b) => (puolue[a] > puolue[b] ? a : b));
-
-      
       puolue.yhteensa = Number(rows[i].cells[5].innerHTML.replace(/\s/g, ''));
       if (puolueet.filter(p => p.nimi === puolue.nimi).length === 0) {
         puolueet.push(puolue)
@@ -38,6 +37,8 @@ class HtmlForm extends React.Component {
     this.props.notifyCreation("Puolueiden kannat lisätty", 5)
     console.log('notify', this.props.notify)
     this.props.addPuolueet(puolueet)
+    }else{
+      this.props.notifyCreation("Tapahtui virhe", 5)
     }
   }
 
@@ -91,7 +92,9 @@ class HtmlForm extends React.Component {
     await this.handleHtml(e)
     this.handlePuolueet()
     this.handleEdustajat()
-    
+    if(this.props.notify !== "Tapahtui virhe"){
+      this.props.history.push('/')
+    }
   }
 
   render() {
@@ -103,26 +106,18 @@ class HtmlForm extends React.Component {
         <h2>Lisää kysymys</h2>
           <FormInput label="Kirjoita alle äänestyksen kohteen oleva kysymys" placeholder="kysymys" name='kysymys'/>
           <FormInput label="Tapahtuma vuosi" placeholder="2018" name='vuosi'/>
-          <FormInput label="Tarkempi kuvaus kysymyksestä" placeholder="selitys" name='selitys'/>
           <FormInput label="Linkki edukunnan sivuille" placeholder="url" name='url'/>
-          <div className="form-group">
+          <TextArea label="Tarkempi kuvaus kysymyksestä" placeholder="selitys" name='selitys'/>
           <br></br>
-          <b>Kopio alle eduskunnan sivuilta html-muotoinen table-elementti, jossa tiedot äänestyksen tuloksista eduskuntaryhmittäin. </b>
-          <textarea type="text" className="form-control" 
-          placeholder="<table><tbody>...</tbody></table>" 
-          rows="10" cols="20" name="htmlPuolueet" form='htmlform'>
-          </textarea>
-          </div>
-          <div>
-          <b>Kopio alle eduskunnan sivuilta html-muotoinen table-elementti, jossa tiedot äänestyksen tuloksista edustajittain.</b>
-          <textarea type="text" className="form-control" 
-          placeholder="<table><tbody>...</tbody></table>" 
-          rows="10" cols="20" name="htmlEdustajat" form='htmlform'>
-          </textarea>
-          </div>
+          <Notification />
+          <TextArea placeholder="<table><tbody>...</tbody></table>" name="htmlPuolueet" 
+          label="Kopio alle eduskunnan sivuilta html-muotoinen table-elementti, jossa tiedot äänestyksen tuloksista eduskuntaryhmittäin."/>
           <br></br>
+          <TextArea  placeholder="<table><tbody>...</tbody></table>" name="htmlEdustajat" 
+          label="Kopio alle eduskunnan sivuilta html-muotoinen table-elementti, jossa tiedot äänestyksen tuloksista edustajittain."/>
+          <br></br>
+         
           <p><Button bsStyle="success"  type="submit">create</Button></p>
-          
         </form>
       </div>
     );
