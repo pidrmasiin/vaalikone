@@ -7,6 +7,7 @@ import { addPuolueet, addDetails, addEdustajat } from '../reducers/kysymysReduce
 import { notifyCreation } from '../reducers/notifyReducer'
 import { Button } from 'react-bootstrap'
 import Notification from './Notification'
+import kysymysService from '../services/kysymys'
 
 class HtmlForm extends React.Component {
 
@@ -14,7 +15,6 @@ class HtmlForm extends React.Component {
     var parser = new DOMParser();
     var doc = parser.parseFromString(this.props.html.puolueet, "text/html");
     var puolueet = []
-    console.log('puolueet', doc)
     if(this.props.html.puolueet !== ''){
     const rows = doc.getElementsByTagName("TBODY")[0].rows;
     for (let i = 1; i < rows.length; i += 1) {
@@ -32,10 +32,8 @@ class HtmlForm extends React.Component {
         }
       }
     }
-    console.log('puolueet', puolueet.length)
     if(puolueet.length > 5 && puolueet.length < 10){
-    this.props.notifyCreation("Puolueiden kannat lisätty", 5)
-    console.log('notify', this.props.notify)
+    this.props.notifyCreation("Kannat lisätty", 5)
     this.props.addPuolueet(puolueet)
     }else{
       this.props.notifyCreation("Tapahtui virhe", 5)
@@ -58,8 +56,13 @@ class HtmlForm extends React.Component {
         edustajat.push(edustaja)
         }
       }
+    }if(edustajat.length > 190 && edustajat.length < 201){
+      this.props.notifyCreation("Kannat lisätty", 5)
+      this.props.addEdustajat(edustajat)
+      }
+    else{
+      this.props.notifyCreation("Tapahtui virhe", 5)
     }
-    this.props.addEdustajat(edustajat)
   }
 
   handleHtml = (e) => {
@@ -93,7 +96,12 @@ class HtmlForm extends React.Component {
     this.handlePuolueet()
     this.handleEdustajat()
     if(this.props.notify !== "Tapahtui virhe"){
-      this.props.history.push('/')
+      try {
+        await kysymysService.addKysymys(this.props.kysymys)
+        this.props.history.push('/')
+      } catch (exception){
+        this.props.notifyCreation("Tapahtui virhe", 5)
+      }
     }
   }
 

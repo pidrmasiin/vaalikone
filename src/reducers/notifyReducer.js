@@ -6,7 +6,6 @@ const notifyReducer = (store = '', action) => {
   }
   
   export const notifyCreation = (content, time) => {
-      console.log('content', content)
     return async (dispatch) => {
       dispatch({
         type: 'SHOW',

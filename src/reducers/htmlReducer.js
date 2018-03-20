@@ -3,7 +3,7 @@ const intialState = {
   edustajat: ''
 }
 
-const reducer = (store = intialState, action) => {
+const htmlReducer = (store = intialState, action) => {
     if (action.type === 'HTML_PUOLUEET') {
       return {...store, puolueet: action.html}
     }if (action.type === 'HTML_EDUSTAJAT') {
@@ -32,7 +32,4 @@ export const htmlEdustajat = (html) => {
   }
 }
 
-
-
-
-export default reducer;
+export default htmlReducer;

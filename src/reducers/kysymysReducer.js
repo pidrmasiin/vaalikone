@@ -7,7 +7,7 @@ const initialState= {
   vuosi: ''
 }
 
-const reducer = (store = initialState, action) => {
+const kysymysReducer = (store = initialState, action) => {
     if (action.type === 'ADD_PUOLUE') {
       return {...store, puolueet: action.puolueet}
     }if (action.type === 'ADD_DETAILS') {
@@ -52,5 +52,5 @@ const reducer = (store = initialState, action) => {
 
   
   
-  export default reducer;
+  export default kysymysReducer;
   

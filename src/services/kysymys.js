@@ -3,12 +3,13 @@ const baseUrl = '/api/kysymykset'
 
 let token = null
 
-const getAll = () => {
-    const request = axios.get(baseUrl)
-    return request.then(response => response.data)
+const getAll = async () => {
+  const response = await axios.get(baseUrl)
+  console.log('response', response.data)
+  return response.data
   }
 
-const add = async (newObject) => {
+const addKysymys = async (newObject) => {
     const config = {
       headers: { 'Authorization': token }
     }
@@ -25,5 +26,5 @@ const setToken = (newToken) => {
 export default { 
     getAll,
     setToken,
-    add
+    addKysymys
   }
