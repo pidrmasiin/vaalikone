@@ -6,7 +6,7 @@ Toimintaperiaate on siis seuraavanlainen, lisään eduskunnassa äänestetyt kys
 
 Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan sivuilta table-elementin, josta puolueiden kannat kuhunkin kysymykseen tulevat ilmit. 
 
-* [Linkki herokuun](https://vaalikoneisto.herokuapp.com/)
+* [Linkki herokuun](https://vaalitback.herokuapp.com/)
 * [Linkki backiin](https://github.com/pidrmasiin/vaalitback)
 
 # työaikakirjanpito
@@ -19,6 +19,6 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 | 15.3  | 1,5	| Mlab ja Post-metodin säätöä |
 |16.3	| 1	| Notification & FormInput components |
 |19.3	| 1,5	| Notification style + TextArea component + service start |
-|20.3	| 5	| Menu component + login service + userReducer + kysymykset component & reducer |
+|20.3	| 5,5	| Menu component + login service + userReducer + kysymykset component & reducer + herokun kanssa säätöä(proxy) |
 
 
