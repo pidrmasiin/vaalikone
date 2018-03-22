@@ -22,5 +22,6 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |20.3	| 5,5	| Menu component + login service + userReducer + kysymykset component & reducer + herokun kanssa säätöä(proxy) |
 |22.3	| 4	| Backendiin delete, user yms ja fronttiin vastaavaa. Ongelmia frontin kanssa. |
 |22.3	| 3	| Login kuntoon ja navbar yms. ulkoasu kikkailua |
+|22.3	| 2	| Vaihto semantic UI:hin ja ulkoasu kikkailua |
 
 

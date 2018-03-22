@@ -9,6 +9,7 @@ import Login from './components/Login'
 import Notification from './components/Notification'
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { getKysymykset } from './reducers/kysymyksetReducer'
+import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
 
@@ -17,19 +18,15 @@ class App extends React.Component {
   } 
 
   kysymysById = (id) => {
-    console.log('id', id)
     
-    console.log('kysymykset', this.props.kysymykset)
-    console.log('yksiKysymys', this.props.kysymykset.find(k => k.id === id))
     return(
       this.props.kysymykset.find(k => k.id === id)
     )
   }
   
   render() {
-    console.log('loggedUser', window.localStorage.getItem('loggedNoteappUser'))
     return (
-      <div  className="container">
+      <Container>
       <h1>Vaalikone</h1>
         <Notification/>
         <Router>
@@ -37,7 +34,7 @@ class App extends React.Component {
             <Menu/>
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/kysymykset" render={() => <Kysymykset />} />
-            <Route path="/login" render={({ history }) => <Login history={history}/>} />
+            <Route exact path="/login" render={({ history }) => <Login history={history}/>} />
             {window.localStorage.getItem('loggedUser') === null ?
               null : <Route path="/lisaa" render={({ history }) => <HtmlForm history={history}/>}/>
             }
@@ -46,7 +43,7 @@ class App extends React.Component {
             />
           </div>
         </Router>
-      </div>
+      </Container>
     )
   }
 }

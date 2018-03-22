@@ -10,7 +10,6 @@ class Login extends React.Component {
     login = async (e) => {
         e.preventDefault()
         try{
-            console.log('moi')
             const user = await loginService.login({
                 username: e.target.username.value,
                 password: e.target.password.value
@@ -25,7 +24,6 @@ class Login extends React.Component {
       
 
     render() {
-        console.log('this.props.user', this.props.user)
     return (
     <div>
     <h2>Kirjaudu</h2>

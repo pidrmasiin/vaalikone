@@ -1,48 +1,49 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Navbar, Button } from 'react-bootstrap'
+import { Menu } from 'semantic-ui-react'
 
-class Menu extends React.Component {
+class Nav extends React.Component {
 
     render(){
       const navStyle = {
-        background: '#e6fff7'
+        background: '#e6fff7',
+        marginLeft: 0,
       }
-      const actStyle= {
-        background: '#e6ffe6',
-        color: 'black',
-        padding: 26,
-        borderStyle: 'dotted',
-        borderColor: 'mistyrose',
-        marginBottom: 10,
-        fontSize: 16
-       }
 
-       const buttonStyle= {
-        color: 'ff8080',
-        marginRight: 10,
-       }
-    return(
-      <Navbar inverse collapseOnSelect style={navStyle}> 
+      const linkStyle = {
+        color: "black"
+      }
+
       
-        <Navbar.Collapse>
-        <Navbar.Text>
-        <NavLink className="nav-item" style={actStyle} exact to="/"> Etusivu</NavLink>
-        </Navbar.Text>
-        <Navbar.Text>
-        <NavLink style={actStyle} exact to="/kysymykset">Kysymykset</NavLink>
-        </Navbar.Text>
+     
+    return(
+
+      <Menu inverted style={navStyle}>
+      <Menu.Item link>
+        <Link style={linkStyle} to="/"> Etusivu</Link>
+      </Menu.Item>
+      <Menu.Item link>
+        <Link style={linkStyle} to="/kysymykset">Kysymykset</Link>
+      </Menu.Item>
         {window.localStorage.getItem('loggedUser') === null ?
-        null : <Navbar.Text>
-                <NavLink style={actStyle} exact to="/lisaa">Uusi kysymys</NavLink>
-               </Navbar.Text>}
+          null : <Menu.Item link>
+             <Link style={linkStyle} to="/lisaa">Uusi kysymys</Link>
+            </Menu.Item>}
+           
+            <Menu.Menu position='right'>
         {window.localStorage.getItem('loggedUser') === null ?
-        null :<Navbar.Form pullRight>
-              <Button style={buttonStyle}>Log out</Button>
-              </Navbar.Form>}
-      </Navbar.Collapse>
-      </Navbar>
+          <Menu.Item link>
+          <Link to="/login">Kirjaudu</Link>
+          </Menu.Item>
+          :
+          <Menu.Item link>
+          <Link to="/login">Kirjaudu</Link>
+          </Menu.Item>
+        }
+         </Menu.Menu>
+    </Menu>
+   
     )
   }
   
@@ -56,4 +57,4 @@ const mapStateToProps = (state) => {
   
   export default connect(
     mapStateToProps
-  )(Menu)
+  )(Nav)

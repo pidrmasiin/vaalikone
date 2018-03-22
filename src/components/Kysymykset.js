@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Table, Button } from 'semantic-ui-react'
 
 const tableStyle= {
     background: 'mistyrose',
@@ -19,26 +19,24 @@ class Kysymykset extends React.Component {
     
     render() {
         return(
-            <div>
-            <table className="table table-striped" style={tableStyle}>
-                <thead>
-                <tr>
-                <th scope="col"><h4>Kysymys</h4></th>
+            <Table celled>
+                <Table.Header>
+                <Table.Row>
+                <Table.HeaderCell>Kysymys</Table.HeaderCell>
                 {window.localStorage.getItem('loggedUser') === null ?
-                null : <th scope="col">Poisto</th>}
-                 </tr>
-                </thead>
-                <tbody>
+                null : <Table.HeaderCell>>Poisto</Table.HeaderCell>}
+                </Table.Row>
+                </Table.Header>
+                <Table.Body>
                 {this.props.kysymykset.map(k => 
-                <tr key={k.id}>
-                <th><Link style={linkStyle} to={`/kysymykset/${k.id}`}>{k.kysymys}</Link></th>
-                <th>{window.localStorage.getItem('loggedUser') === null ?
-                null : <Button className="btn btn-danger">Delete</Button>}</th>
-                </tr>  
+                <Table.Row key={k.id}>
+                <Table.Cell><Link style={linkStyle} to={`/kysymykset/${k.id}`}>{k.kysymys}</Link></Table.Cell>
+                <Table.Cell>{window.localStorage.getItem('loggedUser') === null ?
+                null : <Button className="btn btn-danger">Delete</Button>}</Table.Cell>
+                </Table.Row>   
                  )}              
-                </tbody>
-            </table>
-            </div>
+                </Table.Body>
+            </Table>
         )
     }
       
