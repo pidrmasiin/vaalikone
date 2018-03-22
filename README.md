@@ -20,5 +20,6 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |16.3	| 1	| Notification & FormInput components |
 |19.3	| 1,5	| Notification style + TextArea component + service start |
 |20.3	| 5,5	| Menu component + login service + userReducer + kysymykset component & reducer + herokun kanssa säätöä(proxy) |
+|22.3	| 4	| Backendiin delete, user yms ja fronttiin vastaavaa. Ongelmia frontin kanssa. |
 
 

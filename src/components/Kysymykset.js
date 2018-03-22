@@ -7,8 +7,6 @@ class Kysymykset extends React.Component {
 
     
     render() {
-        console.log('kysymyksetRender', this.props.kysymykset)
-        console.log('kysymyksetRender', this.props.kysymykset.length)
         return(
             <div>
             {this.props.kysymykset.map(k => 
