@@ -15,9 +15,8 @@ class Login extends React.Component {
                 username: e.target.username.value,
                 password: e.target.password.value
               })
-            console.log('haloo')
             window.localStorage.setItem('loggedUser', JSON.stringify(user))
-            console.log('loggedUser', window.localStorage.getItem('loggedUser'))
+            this.props.userLogin(user.username)
         } catch(exception) {
           console.log('virhe')
         }
@@ -53,12 +52,14 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-     user: state.user
+    
+        return {
+            user: state.user
+           }
     }
-  }
+ 
 
 export default connect(
     mapStateToProps,
-    userLogin
+    { userLogin }
   )(Login)

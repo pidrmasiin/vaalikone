@@ -38,7 +38,7 @@ class App extends React.Component {
             <Route exact path="/" render={() => <Home />} />
             <Route exact path="/kysymykset" render={() => <Kysymykset />} />
             <Route path="/login" render={({ history }) => <Login history={history}/>} />
-            {window.localStorage.getItem('loggedUser') ?
+            {window.localStorage.getItem('loggedUser') === null ?
               null : <Route path="/lisaa" render={({ history }) => <HtmlForm history={history}/>}/>
             }
             <Route exact path="/kysymykset/:id" render={({match}) =>

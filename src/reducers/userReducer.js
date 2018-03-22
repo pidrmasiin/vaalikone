@@ -1,6 +1,5 @@
 const userReducer = (store = '', action) => {
-  console.log('action')
-    if (action.type ==='USER') {
+    if (action.type ==='USER' ) {
       return action.user
     }
     return store
