@@ -23,5 +23,7 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |22.3	| 4	| Backendiin delete, user yms ja fronttiin vastaavaa. Ongelmia frontin kanssa. |
 |22.3	| 3	| Login kuntoon ja navbar yms. ulkoasu kikkailua |
 |22.3	| 2	| Vaihto semantic UI:hin ja ulkoasu kikkailua |
+|28.3	| 3,5	| Ulkoasua ja delete. Alustavaa perehtymistä csv-parserin käyttöön |
+
 
 

@@ -1,18 +1,26 @@
 import React from 'react';
-import { ListGroupItem } from 'react-bootstrap'
+import { Item } from 'semantic-ui-react'
 
 const Kysymys = ({ kysymys }) => {
   console.log('kysymys', kysymys)
   if(kysymys){
     return (
       <div className="container"> 
-      <h2><b>{kysymys.kysymys}</b></h2> 
-      <ListGroupItem bsStyle="info" header="Selitys">
+      <Item.Group>
+      <Item>
+      <Item.Content>
+      <Item.Header>{kysymys.kysymys}</Item.Header>
+      <Item.Description>
       {kysymys.selitys}
-      </ListGroupItem>
-      <ListGroupItem target="_blank" header="Linkki eduskunnan sivuille" href={kysymys.url}>
+      </Item.Description>
+      </Item.Content>
+      </Item>
+      <Item target="_blank" href={kysymys.url}>
       {kysymys.url}
-      </ListGroupItem>
+      </Item>
+      </Item.Group>
+     
+      
       </div>
     )
   }else {

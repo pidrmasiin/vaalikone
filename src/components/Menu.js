@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Button } from 'semantic-ui-react'
 
 class Nav extends React.Component {
+
+    logout = () => {
+    window.localStorage.removeItem('loggedUser')
+    }
 
     render(){
       const navStyle = {
@@ -31,17 +35,19 @@ class Nav extends React.Component {
              <Link style={linkStyle} to="/lisaa">Uusi kysymys</Link>
             </Menu.Item>}
            
-            <Menu.Menu position='right'>
+      <Menu.Menu position='right'>
         {window.localStorage.getItem('loggedUser') === null ?
           <Menu.Item link>
           <Link to="/login">Kirjaudu</Link>
           </Menu.Item>
           :
-          <Menu.Item link>
-          <Link to="/login">Kirjaudu</Link>
+          <Menu.Item>
+            <form onSubmit={this.logout}>
+              <Button type="submit"> Kirjaudu ulos</Button>
+            </form>
           </Menu.Item>
         }
-         </Menu.Menu>
+      </Menu.Menu>
     </Menu>
    
     )

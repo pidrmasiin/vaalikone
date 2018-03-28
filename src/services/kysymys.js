@@ -9,22 +9,29 @@ const getAll = async () => {
   return response.data
   }
 
+const setToken = (newToken) => {
+    token = `bearer ${newToken}`
+  }
+
 const addKysymys = async (newObject) => {
     const config = {
       headers: { 'Authorization': token }
     }
-  
-    const response = await axios.post(baseUrl, newObject)
+    const response = await axios.post(baseUrl, newObject, config)
     return response.data
 }
 
-const setToken = (newToken) => {
-    token = `bearer ${newToken}`
-    return token
+const remove = async (id) => {
+  const config = {
+    headers: { 'Authorization': token }
   }
+  const response = await axios.delete(`${baseUrl}/${id}`, config)
+  return response.data
+}
 
 export default { 
     getAll,
     setToken,
-    addKysymys
+    addKysymys,
+    remove
   }

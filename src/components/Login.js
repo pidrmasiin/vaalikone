@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import loginService from '../services/login'
 import { userLogin } from '../reducers/userReducer'
+import { Form, Button } from 'semantic-ui-react'
 
 
 class Login extends React.Component {
@@ -16,6 +17,10 @@ class Login extends React.Component {
               })
             window.localStorage.setItem('loggedUser', JSON.stringify(user))
             this.props.userLogin(user.username)
+            setTimeout(() => {
+                window.localStorage.removeItem('loggedUser')
+            }, 90000);
+            
         } catch(exception) {
           console.log('virhe')
         }
@@ -30,19 +35,20 @@ class Login extends React.Component {
 
     <form onSubmit={this.login}>
     <div>
-        käyttäjätunnus
-         <input
+        Käyttäjätunnus
+         <Form.Input
          name="username"
          />
         </div>
         <div>
-        salasana
-         <input
+        Salasana
+         <Form.Input
             type="password"
             name="password"
         />
         </div>
-        <button type="submit">Kirjaudu</button>
+        <br></br>
+        <Button inverted color='green' type="submit">Kirjaudu</Button>
         </form>
     </div>
     )

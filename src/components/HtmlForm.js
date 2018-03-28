@@ -5,7 +5,7 @@ import TextArea from './form/TextArea'
 import { htmlEdustajat, htmlPuolueet } from '../reducers/htmlReducer'
 import { addPuolueet, addDetails, addEdustajat } from '../reducers/kysymysReducer'
 import { notifyCreation } from '../reducers/notifyReducer'
-import { Button } from 'react-bootstrap'
+import { Button } from 'semantic-ui-react'
 import Notification from './Notification'
 import kysymysService from '../services/kysymys'
 
@@ -125,7 +125,8 @@ class HtmlForm extends React.Component {
           label="Kopio alle eduskunnan sivuilta html-muotoinen table-elementti, jossa tiedot äänestyksen tuloksista edustajittain."/>
           <br></br>
          
-          <p><Button bsStyle="success"  type="submit">create</Button></p>
+          <p><Button positive type="submit" className="fluid ui button">create</Button></p>
+          <br></br>
         </form>
       </div>
     );

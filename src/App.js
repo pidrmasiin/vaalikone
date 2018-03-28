@@ -10,11 +10,18 @@ import Notification from './components/Notification'
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { getKysymykset } from './reducers/kysymyksetReducer'
 import { Container } from 'semantic-ui-react'
+import kysymysService from './services/kysymys'
 
 class App extends React.Component {
 
-  componentDidMount = async() => {
+  componentWillMount = async() => {
     this.props.getKysymykset()
+
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      kysymysService.setToken(user.token)
+    }  
   } 
 
   kysymysById = (id) => {

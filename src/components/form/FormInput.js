@@ -1,11 +1,12 @@
 
 import React from 'react';
+import { Form } from 'semantic-ui-react'
 
 const FormInput = ( { placeholder, name, label }) => {
     return(
     <div className="form-group">
         <b>{label}</b>
-        <input type="text" className="form-control" placeholder={placeholder} name={name}/>
+        <Form.Input type="text" className="form-control" placeholder={placeholder} name={name}/>
     </div>
   )
 }
