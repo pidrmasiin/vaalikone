@@ -28,6 +28,9 @@ class Nav extends React.Component {
         <Link style={linkStyle} to="/"> Etusivu</Link>
       </Menu.Item>
       <Menu.Item link>
+        <Link style={linkStyle} to="/kone">Vaalikone</Link>
+      </Menu.Item>
+      <Menu.Item link>
         <Link style={linkStyle} to="/kysymykset">Kysymykset</Link>
       </Menu.Item>
         {window.localStorage.getItem('loggedUser') === null ?
