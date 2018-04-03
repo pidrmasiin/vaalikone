@@ -17,11 +17,7 @@ class App extends React.Component {
 
   componentWillMount = async() => {
     this.props.getKysymykset()
-    const loggedUserJSON = window.localStorage.getItem('loggedUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      kysymysService.setToken(user.token)
-    }  
+    
   } 
 
   kysymysById = (id) => {
@@ -36,6 +32,7 @@ class App extends React.Component {
       color: 'white',
       marginLeft: 0,
     }
+    
     return (
       <Container>
       <Header as='h1' block style={navStyle} textAlign='justified'>V a a L i K o n e</Header>

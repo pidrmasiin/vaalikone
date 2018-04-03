@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import loginService from '../services/login'
 import { userLogin } from '../reducers/userReducer'
+import kysymysService from '../services/kysymys'
 import { Form, Button } from 'semantic-ui-react'
 
 
@@ -17,6 +18,8 @@ class Login extends React.Component {
               })
             window.localStorage.setItem('loggedUser', JSON.stringify(user))
             this.props.userLogin(user.username)
+            const loggedUserJSON = window.localStorage.getItem('loggedUser')
+            kysymysService.setToken(JSON.parse(loggedUserJSON).token)
             setTimeout(() => {
                 window.localStorage.removeItem('loggedUser')
             }, 90000);
@@ -24,7 +27,6 @@ class Login extends React.Component {
         } catch(exception) {
           console.log('virhe')
         }
-        
       }
       
 

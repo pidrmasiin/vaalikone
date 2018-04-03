@@ -26,6 +26,8 @@ class Kysymykset extends React.Component {
           return
         }
         try{
+            const loggedUserJSON = window.localStorage.getItem('loggedUser')
+            kysymysService.setToken(JSON.parse(loggedUserJSON).token)
             kysymysService.remove(k.id)
         }catch(error) {
          console.log('jotain meni vikaan')

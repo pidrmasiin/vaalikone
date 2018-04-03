@@ -5,7 +5,6 @@ let token = null
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
-  console.log('response', response.data)
   return response.data
   }
 

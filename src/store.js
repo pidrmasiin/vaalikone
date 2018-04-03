@@ -5,14 +5,16 @@ import kysymysReducer from './reducers/kysymysReducer';
 import kysymyksetReducer from './reducers/kysymyksetReducer';
 import notifyReducer from './reducers/notifyReducer';
 import userReducer from './reducers/userReducer';
+import kayttajaReducer from './reducers/kayttajaReducer';
 
 const reducer = combineReducers({
   html: htmlReducer,
   kysymys: kysymysReducer,
   notify: notifyReducer,
   kysymykset: kysymyksetReducer,
-  user: userReducer
-});
+  user: userReducer,
+  kayttaja: kayttajaReducer
+}); 
 
 const store = createStore(
   reducer,

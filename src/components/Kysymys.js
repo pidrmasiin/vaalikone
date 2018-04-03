@@ -2,7 +2,6 @@ import React from 'react';
 import { Item } from 'semantic-ui-react'
 
 const Kysymys = ({ kysymys }) => {
-  console.log('kysymys', kysymys)
   if(kysymys){
     return (
       <div className="container"> 

@@ -24,7 +24,8 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |22.3	| 3	| Login kuntoon ja navbar yms. ulkoasu kikkailua |
 |22.3	| 2	| Vaihto semantic UI:hin ja ulkoasu kikkailua |
 |28.3	| 3,5	| Ulkoasua ja delete. Alustavaa perehtymistä csv-parserin käyttöön |
-|29.3	| 3,5	| Vaalikonetta alulle. Lisäksi kikkailua ulkoasun kanssa |
+|29.3	| 3,5	| Vaalikonetta alulle. Lisäksi kikkailua ulkoasun kanssa sekä favicon|
+|3.4	| 7	| Vaalikone toimintaan + kirjautumisen toiminnan parantelua|
 
 
 

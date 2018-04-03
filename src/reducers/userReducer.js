@@ -1,17 +1,18 @@
+
 const userReducer = (store = '', action) => {
-    if (action.type ==='USER' ) {
-      return action.user
-    }
-    return store
+  if (action.type ==='USER' ) {
+    return action.user
   }
-  
-  export const userLogin= (content) => {
-    return async (dispatch) => {
-      dispatch({
-        type: 'USER',
-        user: content
-      })
-  }
+  return store
 }
-  
+
+export const userLogin= (content) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'USER',
+      user: content
+    })
+}
+}
+
 export default userReducer

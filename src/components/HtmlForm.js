@@ -23,9 +23,9 @@ class HtmlForm extends React.Component {
         jaa: Number(rows[i].cells[1].innerHTML.replace(/\s/g, '')),
         ei: Number(rows[i].cells[2].innerHTML.replace(/\s/g, '')),
         tyhjia: Number(rows[i].cells[3].innerHTML.replace(/\s/g, '')),
-        poissa: Number(rows[i].cells[4].innerHTML.replace(/\s/g, '')),
       };
       puolue.kanta = Object.keys(puolue).reduce((a, b) => (puolue[a] > puolue[b] ? a : b));
+      puolue.poissa = Number(rows[i].cells[4].innerHTML.replace(/\s/g, ''))
       puolue.yhteensa = Number(rows[i].cells[5].innerHTML.replace(/\s/g, ''));
       if (puolueet.filter(p => p.nimi === puolue.nimi).length === 0) {
         puolueet.push(puolue)
@@ -36,6 +36,7 @@ class HtmlForm extends React.Component {
     this.props.notifyCreation("Kannat lisätty", 5)
     this.props.addPuolueet(puolueet)
     }else{
+      console.log('puolueet')
       this.props.notifyCreation("Tapahtui virhe", 5)
     }
   }
@@ -61,6 +62,7 @@ class HtmlForm extends React.Component {
       this.props.addEdustajat(edustajat)
       }
     else{
+      console.log('edustajat')
       this.props.notifyCreation("Tapahtui virhe", 5)
     }
   }
@@ -97,6 +99,8 @@ class HtmlForm extends React.Component {
     this.handleEdustajat()
     if(this.props.notify !== "Tapahtui virhe"){
       try {
+        const loggedUserJSON = window.localStorage.getItem('loggedUser')
+        kysymysService.setToken(JSON.parse(loggedUserJSON).token)
         await kysymysService.addKysymys(this.props.kysymys)
         this.props.history.push('/')
       } catch (exception){
@@ -106,7 +110,6 @@ class HtmlForm extends React.Component {
   }
 
   render() {
-    console.log('this.props', this.props.kysymys)
 
     return (
       <div className='container'>
