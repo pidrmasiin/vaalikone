@@ -11,7 +11,7 @@ class Nav extends React.Component {
 
     render(){
       const navStyle = {
-        background: '#e6fff7',
+        background: '#a3c2c2',
         marginLeft: 0,
       }
 
@@ -32,6 +32,9 @@ class Nav extends React.Component {
       </Menu.Item>
       <Menu.Item link>
         <Link style={linkStyle} to="/kysymykset">Kysymykset</Link>
+      </Menu.Item>
+      <Menu.Item link>
+        <Link style={linkStyle} to="/kategoriat">Kategoriat</Link>
       </Menu.Item>
         {window.localStorage.getItem('loggedUser') === null ?
           null : <Menu.Item link>

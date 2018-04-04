@@ -4,6 +4,7 @@ const initialState= {
   url: '',
   puolueet: [],
   edustajat:[],
+  kategoriat:[],
   vuosi: ''
 }
 
@@ -18,6 +19,8 @@ const kysymysReducer = (store = initialState, action) => {
         vuosi: action.details.vuosi}
     }if (action.type === 'ADD_EDUSTAJAT') {
       return {...store, edustajat: action.edustajat}
+    }if(action.type === 'ADD_KATEGORIAT'){
+      return {...store, kategoriat: action.kategoriat}
     }
     return store
   }
@@ -45,6 +48,15 @@ const kysymysReducer = (store = initialState, action) => {
       dispatch({
         type: 'ADD_DETAILS',
         details
+      })
+    }
+  }
+
+  export const addKategoriat = (kategoriat) => {
+    return async (dispatch) => {
+      dispatch({
+        type: 'ADD_KATEGORIAT',
+        kategoriat
       })
     }
   }

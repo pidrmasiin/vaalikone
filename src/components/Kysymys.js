@@ -4,23 +4,18 @@ import { Item } from 'semantic-ui-react'
 const Kysymys = ({ kysymys }) => {
   if(kysymys){
     return (
-      <div className="container"> 
-      <Item.Group>
+      <Item.Group divided>
       <Item>
       <Item.Content>
       <Item.Header>{kysymys.kysymys}</Item.Header>
       <Item.Description>
       {kysymys.selitys}
       </Item.Description>
+      <Item.Extra href={kysymys.url}>
+      {kysymys.url} </Item.Extra>
       </Item.Content>
       </Item>
-      <Item target="_blank" href={kysymys.url}>
-      {kysymys.url}
-      </Item>
       </Item.Group>
-     
-      
-      </div>
     )
   }else {
     return null

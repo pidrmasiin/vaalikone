@@ -6,6 +6,7 @@ import kysymyksetReducer from './reducers/kysymyksetReducer';
 import notifyReducer from './reducers/notifyReducer';
 import userReducer from './reducers/userReducer';
 import kayttajaReducer from './reducers/kayttajaReducer';
+import kategoriatReducer from './reducers/kategoriatReducer';
 
 const reducer = combineReducers({
   html: htmlReducer,
@@ -13,7 +14,8 @@ const reducer = combineReducers({
   notify: notifyReducer,
   kysymykset: kysymyksetReducer,
   user: userReducer,
-  kayttaja: kayttajaReducer
+  kayttaja: kayttajaReducer,
+  kategoriat: kategoriatReducer
 }); 
 
 const store = createStore(

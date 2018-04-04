@@ -26,6 +26,7 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |28.3	| 3,5	| Ulkoasua ja delete. Alustavaa perehtymistä csv-parserin käyttöön |
 |29.3	| 3,5	| Vaalikonetta alulle. Lisäksi kikkailua ulkoasun kanssa sekä favicon|
 |3.4	| 7	| Vaalikone toimintaan + kirjautumisen toiminnan parantelua|
+|4.4	| 7,5	| Vaalikoneen parantelua + kategoriat + uusi ulkoasu|
 
 
 

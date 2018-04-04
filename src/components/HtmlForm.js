@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import FormInput from './form/FormInput'
 import TextArea from './form/TextArea'
 import { htmlEdustajat, htmlPuolueet } from '../reducers/htmlReducer'
-import { addPuolueet, addDetails, addEdustajat } from '../reducers/kysymysReducer'
+import { addPuolueet, addDetails, addEdustajat, addKategoriat } from '../reducers/kysymysReducer'
 import { notifyCreation } from '../reducers/notifyReducer'
-import { Button } from 'semantic-ui-react'
+import { Button, Checkbox } from 'semantic-ui-react'
 import Notification from './Notification'
 import kysymysService from '../services/kysymys'
 
 class HtmlForm extends React.Component {
-
+ 
   handlePuolueet = (e) => {
     var parser = new DOMParser();
     var doc = parser.parseFromString(this.props.html.puolueet, "text/html");
@@ -32,7 +32,7 @@ class HtmlForm extends React.Component {
         }
       }
     }
-    if(puolueet.length > 5 && puolueet.length < 10){
+    if(puolueet.length > 5 && puolueet.length < 20){
     this.props.notifyCreation("Kannat lisätty", 5)
     this.props.addPuolueet(puolueet)
     }else{
@@ -97,9 +97,11 @@ class HtmlForm extends React.Component {
     await this.handleHtml(e)
     this.handlePuolueet()
     this.handleEdustajat()
+    this.addKatet(e)
     if(this.props.notify !== "Tapahtui virhe"){
       try {
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
+        console.log('loggedUser', loggedUserJSON)
         kysymysService.setToken(JSON.parse(loggedUserJSON).token)
         await kysymysService.addKysymys(this.props.kysymys)
         this.props.history.push('/')
@@ -107,6 +109,14 @@ class HtmlForm extends React.Component {
         this.props.notifyCreation("Tapahtui virhe", 5)
       }
     }
+  }
+
+
+  addKatet = () => {
+      var kategoriat = []
+      this.props.kategoriat.map(k => document.getElementById(k.nimi).checked ? kategoriat.push(k) : null)
+      const idt = kategoriat.map(k => k.id)
+      this.props.addKategoriat(idt)
   }
 
   render() {
@@ -119,6 +129,16 @@ class HtmlForm extends React.Component {
           <FormInput label="Tapahtuma vuosi" placeholder="2018" name='vuosi'/>
           <FormInput label="Linkki edukunnan sivuille" placeholder="url" name='url'/>
           <TextArea label="Tarkempi kuvaus kysymyksestä" placeholder="selitys" name='selitys'/>
+          <b>Kategoriat</b>
+          <br></br>
+          {this.props.kategoriat.map(k => 
+          <Checkbox key={k.nimi}
+            label={k.nimi}
+            name='kategoriat'
+            id={k.nimi}
+            />
+          )}
+          <br></br>
           <br></br>
           <Notification />
           <TextArea placeholder="<table><tbody>...</tbody></table>" name="htmlPuolueet" 
@@ -139,11 +159,12 @@ const mapStateToProps = (state) => {
   return {
    html: state.html,
    kysymys: state.kysymys,
-   notify: state.notify
+   notify: state.notify,
+   kategoriat: state.kategoriat
   }
 }
 
 export default connect(
   mapStateToProps, 
-  { htmlEdustajat, htmlPuolueet, addPuolueet, addEdustajat, addDetails, notifyCreation }
+  { htmlEdustajat, htmlPuolueet, addPuolueet, addEdustajat, addDetails, notifyCreation, addKategoriat }
 )(HtmlForm)

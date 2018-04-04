@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
   
     render() {
         return(
-        <Table celled sortable color='teal' id='table'>
+        <Table celled id='table'>
             <Table.Header>
             <Table.Row>
             <Table.HeaderCell positive>Eduskuntaryhmä</Table.HeaderCell>

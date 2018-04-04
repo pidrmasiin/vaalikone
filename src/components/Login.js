@@ -20,9 +20,6 @@ class Login extends React.Component {
             this.props.userLogin(user.username)
             const loggedUserJSON = window.localStorage.getItem('loggedUser')
             kysymysService.setToken(JSON.parse(loggedUserJSON).token)
-            setTimeout(() => {
-                window.localStorage.removeItem('loggedUser')
-            }, 90000);
             
         } catch(exception) {
           console.log('virhe')

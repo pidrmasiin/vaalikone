@@ -4,12 +4,6 @@ import { Link } from 'react-router-dom'
 import { Table, Button } from 'semantic-ui-react'
 import kysymysService from '../services/kysymys'
 
-const tableStyle= {
-    background: 'mistyrose',
-    color: 'black',
-    fontWeight: 'bold'
-   }
-
    const linkStyle= {
     color: 'black',
     fontSize: 14,
@@ -37,7 +31,7 @@ class Kysymykset extends React.Component {
 
     render() {
         return(
-            <Table celled color='teal' selectable>
+            <Table celled>
                 <Table.Header>
                 <Table.Row>
                 <Table.HeaderCell positive>Kysymys</Table.HeaderCell>
@@ -48,7 +42,7 @@ class Kysymykset extends React.Component {
                 <Table.Body>
                 {this.props.kysymykset.map(k => 
                 <Table.Row key={k.id}>
-                <Table.Cell><Link style={linkStyle} to={`/kysymykset/${k.id}`}>{k.kysymys}</Link></Table.Cell>
+                <Table.Cell selectable><Link style={linkStyle} to={`/kysymykset/${k.id}`}>{k.kysymys}</Link></Table.Cell>
                 <Table.Cell>{window.localStorage.getItem('loggedUser') === null ?
                 null : <form onSubmit={this.remove(k)}><Button inverted color='red' type="submit">Delete</Button></form>}</Table.Cell>
                 </Table.Row>   
