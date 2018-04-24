@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import HtmlForm from './components/HtmlForm'
+import HtmlForm from './components/form/HtmlForm'
 import Home from './components/Home'
 import Menu from './components/Menu'
-import Kysymykset from './components/Kysymykset'
-import Kategoriat from './components/Kategoriat'
-import Kategoria from './components/Kategoria'
-import Kysymys from './components/Kysymys'
+import Kysymykset from './components/kysymykset/Kysymykset'
+import Kategoriat from './components/kategoriat/Kategoriat'
+import Kategoria from './components/kategoriat/Kategoria'
+import UusiKategoria from './components/kategoriat/UusiKategoria'
+import Kysymys from './components/kysymykset/Kysymys'
 import Kone from './components/Kone'
 import Login from './components/Login'
 import Notification from './components/Notification'
@@ -55,8 +56,10 @@ class App extends React.Component {
             <Route exact path="/kone" render={() => <Kone />} />
             <Route exact path="/login" render={({ history }) => <Login history={history}/>} />
             {window.localStorage.getItem('loggedUser') === null ?
-              null : <Route path="/lisaa" render={({ history }) => <HtmlForm history={history}/>}/>
-            }
+              null :<div>
+                      <Route path="/lisaa" render={({ history }) => <HtmlForm history={history}/>}/>
+                      <Route path="/uusikategoria" render={({ history }) => <UusiKategoria history={history}/>}/>
+                  </div>}
             <Route exact path="/kysymykset/:id" render={({match}) =>
                  <Kysymys kysymys={this.kysymysById(match.params.id)} />}
             />

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Table, Button } from 'semantic-ui-react'
-import kysymysService from '../services/kysymys'
+import kysymysService from './../../services/kysymys'
 
    const linkStyle= {
     color: 'black',

@@ -28,6 +28,17 @@ const remove = async (id) => {
   return response.data
 }
 
+
+const addKategoria = async (newObject) => {
+  const config = {
+    headers: { 'Authorization': token }
+  }
+  const response = await axios.post('/api/kategoriat', newObject, config)
+  return response.data
+}
+
+
+
 export default { 
     getAll,
     setToken,

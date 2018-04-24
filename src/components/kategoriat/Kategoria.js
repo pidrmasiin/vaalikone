@@ -1,6 +1,6 @@
 import React from 'react';
 import { Item } from 'semantic-ui-react'
-import Kysymys from './Kysymys'
+import Kysymys from '../kysymykset/Kysymys'
 
 const Kategoria = ({ kategoria, kysymykset }) => {
     

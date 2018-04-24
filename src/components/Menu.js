@@ -37,10 +37,12 @@ class Nav extends React.Component {
         <Link style={linkStyle} to="/kategoriat">Kategoriat</Link>
       </Menu.Item>
         {window.localStorage.getItem('loggedUser') === null ?
-          null : <Menu.Item link>
+          null : <Menu inverted style={navStyle}><Menu.Item link>
              <Link style={linkStyle} to="/lisaa">Uusi kysymys</Link>
-            </Menu.Item>}
-           
+            </Menu.Item>
+            <Menu.Item link>
+            <Link style={linkStyle} to="/uusikategoria">Uusi kategoria</Link>
+           </Menu.Item></Menu>}
       <Menu.Menu position='right'>
         {window.localStorage.getItem('loggedUser') === null ?
           <Menu.Item link>

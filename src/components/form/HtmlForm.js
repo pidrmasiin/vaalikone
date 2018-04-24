@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import FormInput from './form/FormInput'
-import TextArea from './form/TextArea'
-import { htmlEdustajat, htmlPuolueet } from '../reducers/htmlReducer'
-import { addPuolueet, addDetails, addEdustajat, addKategoriat } from '../reducers/kysymysReducer'
-import { notifyCreation } from '../reducers/notifyReducer'
+import FormInput from './FormInput'
+import TextArea from './TextArea'
+import { htmlEdustajat, htmlPuolueet } from '../../reducers/htmlReducer'
+import { addPuolueet, addDetails, addEdustajat, addKategoriat } from '../../reducers/kysymysReducer'
+import { notifyCreation } from '../../reducers/notifyReducer'
 import { Button, Checkbox } from 'semantic-ui-react'
-import Notification from './Notification'
-import kysymysService from '../services/kysymys'
+import Notification from '../Notification'
+import kysymysService from './../../services/kysymys'
 
 class HtmlForm extends React.Component {
  
