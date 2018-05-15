@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { getKysymykset } from './reducers/kysymyksetReducer'
 import { getKategoriat } from './reducers/kategoriatReducer'
 import { Container, Header } from 'semantic-ui-react'
+import './App.css'
 
 class App extends React.Component {
 
@@ -51,7 +52,7 @@ class App extends React.Component {
           <div>
             <Menu/>
             <Route exact path="/" render={() => <Home />} />
-            <Route exact path="/kategoriat" render={() => <Kategoriat />} />
+            <Route exact path="/kategoriat" render={(history) => <Kategoriat history={history} />} />
             <Route exact path="/kysymykset" render={() => <Kysymykset />} />
             <Route exact path="/kone" render={() => <Kone />} />
             <Route exact path="/login" render={({ history }) => <Login history={history}/>} />

@@ -28,6 +28,7 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |3.4	| 7	| Vaalikone toimintaan + kirjautumisen toiminnan parantelua|
 |4.4	| 7,5	| Vaalikoneen parantelua + kategoriat + uusi ulkoasu|
 |24.4	| 4	| Kysymysten/Kategorioiden poiston ja muokkauksen backiin. Front: kategorioiden lisäys|
+|15.5	| 1,5	| Kategorioiden poisto ja muokkaukset backiin. Taustakuva yms muuta ulkoasua.|
 
 
 

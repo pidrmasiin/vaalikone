@@ -167,6 +167,8 @@ class Kone extends React.Component {
           <Grid.Column width={3}>
           </Grid.Column>
         </Grid.Row>
+        <Grid.Row>
+        </Grid.Row>
       </Grid>
     )
   }if(this.props.kayttaja.kysymykset.length === this.props.kysymykset.length){

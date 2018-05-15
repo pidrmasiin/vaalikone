@@ -14,7 +14,7 @@ class UusiKategoria extends React.Component {
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
         kategoriaService.setToken(JSON.parse(loggedUserJSON).token)
         await kategoriaService.addKategoria(kategoria)
-        this.props.history.push('/')
+        window.location.assign('/kategoriat')
       } catch (exception){
         console.log('Tapahtui virhe')
       }
