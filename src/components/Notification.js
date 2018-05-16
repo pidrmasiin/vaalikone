@@ -2,9 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 class Notification extends React.Component {
+
+  componentDidMount = () => {
+  }
   
   render() {
-    if(this.props.notify === ''){
+    if (this.props.notify === '') {
       return null
     }
     const divStyle = {
@@ -14,9 +17,9 @@ class Notification extends React.Component {
       borderStyle: 'solid',
       borderRadius: 5,
       padding: 10,
-      marginBottom: 10
+      marginBottom: 10,
     }
-  if (this.props.notify === 'Tapahtui virhe' ) {
+    if (this.props.notify === 'Tapahtui virhe') {
       divStyle.color = 'red'
     }
     return (
@@ -27,15 +30,11 @@ class Notification extends React.Component {
   }
 }
 
-const mapStateToProps = (store) => {
-  return {
+const mapStateToProps = (store) => ({
     notify: store.notify,
-  }
-}
+  })
 
-const ConnectedNotification = connect(
-  mapStateToProps
-)(Notification)
+const ConnectedNotification = connect(mapStateToProps,)(Notification)
 
 
 export default ConnectedNotification

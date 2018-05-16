@@ -1,48 +1,18 @@
 module.exports = {
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "jsx-a11y/anchor-is-valid": 0,
+        "react/prop-types": 0,
+        "semi": 0,
+        "operator-assignment": ["error", "never"]
+    },
+    "globals": {
+        "document": false
+    },
     "env": {
         "browser": true,
-        "es6": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "jsx": true
-        },
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react", "jest"
-    ],
-    "rules": {
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ],
-        "eqeqeq": "error",
-        "no-trailing-spaces": "error",
-        "object-curly-spacing": [
-            "error", "always"
-        ],
-        "arrow-spacing": [
-            "error", { "before": true, "after": true }
-        ],
-        "no-console": 0,
-    }
+        "node": true
+      }
 };

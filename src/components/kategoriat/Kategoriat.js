@@ -42,7 +42,9 @@ class Kategoriat extends React.Component {
     render() {
         return(
             <div>
+            {window.localStorage.getItem('loggedUser') && 
             <UusiKategoria/>
+        }
             <Table celled>
                 <Table.Header>
                 <Table.Row>
