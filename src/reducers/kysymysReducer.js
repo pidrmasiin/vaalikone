@@ -1,68 +1,60 @@
-const initialState= {
+const initialState = {
   kysymys: '',
   selitys: '',
   url: '',
   puolueet: [],
-  edustajat:[],
-  kategoriat:[],
-  vuosi: ''
+  edustajat: [],
+  kategoriat: [],
+  vuosi: '',
 }
 
 const kysymysReducer = (store = initialState, action) => {
-    if (action.type === 'ADD_PUOLUE') {
-      return {...store, puolueet: action.puolueet}
-    }if (action.type === 'ADD_DETAILS') {
-      return {...store, 
-        kysymys: action.details.kysymys, 
-        selitys: action.details.selitys, 
-        url: action.details.url, 
-        vuosi: action.details.vuosi}
-    }if (action.type === 'ADD_EDUSTAJAT') {
-      return {...store, edustajat: action.edustajat}
-    }if(action.type === 'ADD_KATEGORIAT'){
-      return {...store, kategoriat: action.kategoriat}
+  if (action.type === 'ADD_PUOLUE') {
+    return { ...store, puolueet: action.puolueet }
+  } if (action.type === 'ADD_DETAILS') {
+    return {
+      ...store,
+      kysymys: action.details.kysymys,
+      selitys: action.details.selitys,
+      url: action.details.url,
+      vuosi: action.details.vuosi,
     }
-    return store
+  } if (action.type === 'ADD_EDUSTAJAT') {
+    return { ...store, edustajat: action.edustajat }
+  } if (action.type === 'ADD_KATEGORIAT') {
+    return { ...store, kategoriat: action.kategoriat }
   }
-  
-  export const addPuolueet = (puolueet) => {
-    return async (dispatch) => {
-      dispatch({
-        type: 'ADD_PUOLUE',
-        puolueet
-      })
-    }
-  }
-  
-  export const addEdustajat = (edustajat) => {
-    return async (dispatch) => {
-      dispatch({
-        type: 'ADD_EDUSTAJAT',
-        edustajat
-      })
-    }
-  }
+  return store
+}
 
-  export const addDetails = (details) => {
-    return async (dispatch) => {
-      dispatch({
-        type: 'ADD_DETAILS',
-        details
-      })
-    }
-  }
+export const addPuolueet = puolueet => async (dispatch) => {
+  dispatch({
+    type: 'ADD_PUOLUE',
+    puolueet,
+  })
+}
 
-  export const addKategoriat = (kategoriat) => {
-    return async (dispatch) => {
-      dispatch({
-        type: 'ADD_KATEGORIAT',
-        kategoriat
-      })
-    }
-  }
+export const addEdustajat = edustajat => async (dispatch) => {
+  dispatch({
+    type: 'ADD_EDUSTAJAT',
+    edustajat,
+  })
+}
+
+export const addDetails = details => async (dispatch) => {
+  dispatch({
+    type: 'ADD_DETAILS',
+    details,
+  })
+}
+
+export const addKategoriat = kategoriat => async (dispatch) => {
+  dispatch({
+    type: 'ADD_KATEGORIAT',
+    kategoriat,
+  })
+}
 
 
-  
-  
-  export default kysymysReducer;
-  
+export default kysymysReducer;
+

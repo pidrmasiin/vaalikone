@@ -11,31 +11,35 @@ class Nav extends React.Component {
     render() {
       const navStyle = {
         background: '#a3c2c2',
-        marginLeft: 0,
+        marginBottom: '4%',
       };
 
       const linkStyle = {
-        color: 'black',
+        color: 'white',
       };
 
 
       return (
 
         <Menu inverted style={navStyle}>
-          <Menu.Item link>
+          <Menu.Item>
             <Link style={linkStyle} to="/"> Etusivu</Link>
           </Menu.Item>
-          <Menu.Item link>
-            <Link style={linkStyle} to="/kone">Vaalikone</Link>
+          <Menu.Item>
+            <Link
+              style={linkStyle}
+              to="/kone"
+            >Vaalikone
+            </Link>
           </Menu.Item>
-          <Menu.Item link>
+          <Menu.Item>
             <Link style={linkStyle} to="/kysymykset">Kysymykset</Link>
           </Menu.Item>
-          <Menu.Item link>
+          <Menu.Item>
             <Link style={linkStyle} to="/kategoriat">Kategoriat</Link>
           </Menu.Item>
           {window.localStorage.getItem('loggedUser') &&
-          <Menu.Item link>
+          <Menu.Item>
             <Link style={linkStyle} to="/lisaa">Uusi kysymys</Link>
           </Menu.Item>
             }
@@ -43,7 +47,7 @@ class Nav extends React.Component {
             {window.localStorage.getItem('loggedUser') &&
             <Menu.Item>
               <form onSubmit={this.logout}>
-                <Button type="submit"> Kirjaudu ulos</Button>
+                <Button size="tiny" type="submit"> Kirjaudu ulos</Button>
               </form>
             </Menu.Item>
         }

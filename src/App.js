@@ -33,15 +33,14 @@ class App extends React.Component {
 
   render() {
     const navStyle = {
-
       background: '#669999',
       color: 'white',
-      marginLeft: 0,
+      marginTop: '2%',
     };
 
     return (
       <Container>
-        <Header as="h1" block style={navStyle} textAlign="justified">V A A L I K O N E</Header>
+        <Header as="h1" block style={navStyle}>V A A L I K O N E</Header>
         <Notification />
         <Router>
           <div>

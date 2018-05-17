@@ -73,6 +73,11 @@ class Kone extends React.Component {
           </h3>
           <h3>Tulokset:</h3>
           <VastausTable />
+          <Grid.Row />
+          <h3>
+            Olet vastannut kaikkiin kysymyksiin. Uudelleen lataa sivu, jos haluat vastata uudelleen.
+          </h3>
+          <Grid.Row />
         </div>
       );
     }
@@ -107,10 +112,10 @@ class Kone extends React.Component {
           <Grid.Column width={9}>
             <Item>
               <Item.Content>
-                <Item.Header><h2>{this.props.kayttaja.kysymykset.length}. {this.state.kysymys.selitys} <Button onClick={this.show} size="mini" basic>Lisätietoja</Button></h2></Item.Header>
+                <Item.Header><h2>{this.props.kayttaja.kysymykset.length}. {this.state.kysymys.kysymys} <Button onClick={this.show} size="mini" basic>Lisätietoja</Button></h2></Item.Header>
                 <Item.Description style={visible}>
                   <ul>
-                    <li>{this.state.kysymys.kysymys}</li>
+                    <li>{this.state.kysymys.selitys}</li>
                     <li>{this.state.kysymys.vuosi}</li>
                     <li><a href={this.state.kysymys.url}>{this.state.kysymys.url}</a></li>
                   </ul>

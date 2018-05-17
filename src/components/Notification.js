@@ -2,10 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 class Notification extends React.Component {
-
   componentDidMount = () => {
   }
-  
   render() {
     if (this.props.notify === '') {
       return null
@@ -30,11 +28,11 @@ class Notification extends React.Component {
   }
 }
 
-const mapStateToProps = (store) => ({
-    notify: store.notify,
-  })
+const mapStateToProps = store => ({
+  notify: store.notify,
+})
 
-const ConnectedNotification = connect(mapStateToProps,)(Notification)
+const ConnectedNotification = connect(mapStateToProps)(Notification)
 
 
 export default ConnectedNotification

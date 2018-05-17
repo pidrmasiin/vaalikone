@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Home = () => (
-    <div> 
-    <h2>Tervetuloa</h2> 
+  <div>
+    <h2>Tervetuloa</h2>
     Täällä voit tarkastella eduskunnan käyttäytymistä suhteessa omiin näkemyksiisi.
-    </div>
-  )
+  </div>
+)
 
-  export default Home
+export default Home
