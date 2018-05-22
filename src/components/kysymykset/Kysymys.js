@@ -22,6 +22,11 @@ class Kysymys extends React.Component {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
     kysymysService.setToken(JSON.parse(loggedUserJSON).token)
     await kysymysService.modifyKysymys(kysymys.id, kysymys)
+    this.setState({
+      kategoriat: false,
+      muokkaa: false,
+      muokattava: null,
+    })
   }
   onKategoriat = async () => {
     const kategoriat = []
