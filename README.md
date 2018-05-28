@@ -33,6 +33,7 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |17.5	| 7	| Muokkauksen mahdollisuus kysymyksiin ja kategorioiden poisto sekä ulkoasua.|
 |22.5	| 5	| Kysymysten ja kategorioiden poisto ja muokkaus toiminto kuntoon.(Backend)|
 |23.5	| 3	| CSV-parserin opettelua|
+|28.5	| 4	| CSV-tiedoston kanssa sähläämistä. (Haku toiminto yksittäisille edustajille)|
 
 
 

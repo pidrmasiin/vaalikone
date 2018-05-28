@@ -6,7 +6,7 @@ import HtmlForm from './components/form/HtmlForm';
 import Home from './components/Home';
 import Menu from './components/Menu';
 import Kysymykset from './components/kysymykset/Kysymykset';
-import Vastaukset from './components/vastaukset/Vastaukset';
+import EtsiVastaus from './components/vastaukset/EtsiVastaus'
 import Kategoriat from './components/kategoriat/Kategoriat';
 import Kategoria from './components/kategoriat/Kategoria';
 import Kysymys from './components/kysymykset/Kysymys';
@@ -50,7 +50,7 @@ class App extends React.Component {
             <Route exact path="/kategoriat" render={history => <Kategoriat history={history} />} />
             <Route exact path="/kysymykset" render={() => <Kysymykset />} />
             <Route exact path="/kone" render={() => <Kone />} />
-            <Route exact path="/vastaukset" render={() => <Vastaukset />} />
+            <Route exact path="/vastaukset" render={() => <EtsiVastaus />} />
             <Route exact path="/login" render={({ history }) => <Login history={history} />} />
             {window.localStorage.getItem('loggedUser') &&
               <div>

@@ -1,45 +1,50 @@
 import React from 'react';
-import Papa from 'papaparse';
-import csv from './vanhatvastaukset.csv'
+import { connect } from 'react-redux';
+import { Container, Table } from 'semantic-ui-react'
+
 
 class Vastaukset extends React.Component {
-  constructor(props) {
-    super(props);
-    this.updateData = this.updateData.bind(this);
-    this.state = {
-      array: false,
-    };
-  }
 
-    componentDidMount = async () => {
-      // Parse CSV string
-      Papa.parse(csv, {
-        header: true,
-        trimHeader: true,
-        download: true,
-        complete: this.updateData,
-      })
+    componentDidMount = () => {
     }
 
-    updateData(result) {
-      const data = result.data;
-      // Here this is available and we can call this.setState (since it's binded in the constructor)
-      this.setState({ array: data }); // or shorter ES syntax: this.setState({ data });
-    }
 
     render() {
-      if (this.state.array) {
-        const array = Object.keys(this.state.array[1])[16]
-        console.log('test', array)
-        console.log('array', this.state.array[1])
-      }
+      console.log('state', this.props)
+      const edustaja = this.props.edustaja
+      const sliced = this.props.sliced
+      console.log('edustaja', edustaja)
+      console.log('edustaja', sliced)
       return (
-        <div>
-          <h2>Tervetuloa</h2>
-    Täällä voit tarkastella eduskunnan käyttäytymistä suhteessa omiin näkemyksiisi.
-        </div>
+        <Container style={{ background: '#eff5f5' }}>
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Kysymys</Table.HeaderCell>
+                <Table.HeaderCell>Vastaus</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {sliced.map(x =>
+              (
+                <Table.Row>
+                  <Table.Cell>{x}</Table.Cell>
+                  <Table.Cell></Table.Cell>
+                </Table.Row>
+                ))}
+            </Table.Body>
+          </Table>
+        </Container>
       )
     }
 }
 
-export default Vastaukset
+const mapStateToProps = state => ({
+  edustaja: state.edustaja,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(Vastaukset);
+

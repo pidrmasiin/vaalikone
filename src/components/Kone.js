@@ -62,6 +62,7 @@ class Kone extends React.Component {
   }
 
   render() {
+    console.log('state', this.state)
     const visible = { display: this.state.show ? '' : 'none' };
     const tulokset = { display: this.state.tulokset ? '' : 'none' };
 
