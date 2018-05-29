@@ -14,9 +14,7 @@ const linkStyle = {
 
 class Kategoriat extends React.Component {
     componentDidMount = async () => {
-      console.log('props', this.props);
-      const kategoriat = this.props.getKategoriat();
-      console.log('kategoriat', kategoriat);
+      this.props.getKategoriat();
     }
 
     remove =k => () => {
@@ -36,7 +34,6 @@ class Kategoriat extends React.Component {
 
 
     render() {
-      console.log('state', this.props)
       return (
         <div>
           {window.localStorage.getItem('loggedUser') &&

@@ -8,14 +8,14 @@ class VastausTable extends React.Component {
     componentDidMount = () => {
     }
     render() {
-      const monta = this.props.kayttaja.kysymykset.length - 1
+      const monta = this.props.kayttaja.kysymykset.length
       return (
         <Table celled id="table">
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell positive>Eduskuntaryhmä</Table.HeaderCell>
               <Table.HeaderCell>
-                  Monta kertaa samaa mieltä ({monta} kysymystä näytetty)
+                  Monta kertaa samaa mieltä ({monta} kysymykseen vastattu)
               </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -24,7 +24,7 @@ class VastausTable extends React.Component {
               (
                 <Table.Row key={x.name}>
                   <Table.Cell>{x.name}</Table.Cell>
-                  <Table.Cell>{x.aanet}</Table.Cell>
+                  <Table.Cell>{Math.round((x.aanet / monta) * 100)} %</Table.Cell>
                 </Table.Row>))}
           </Table.Body>
         </Table>

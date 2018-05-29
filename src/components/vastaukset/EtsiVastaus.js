@@ -1,7 +1,7 @@
 import React from 'react';
 import Papa from 'papaparse';
 import { connect } from 'react-redux';
-import { Container, Button, Table } from 'semantic-ui-react'
+import { Container, Button } from 'semantic-ui-react'
 import csv from './vanhatvastaukset.csv'
 import FormInput from '../form/FormInput';
 import Vastaukset from './Vastaukset';
@@ -26,9 +26,10 @@ class EtsiVastaus extends React.Component {
       })
     }
     onSubmit = (e) => {
-      console.log('mo')
-      const edustaja = this.state.array.find(x => x.sukunimi === e.target.sukunimi.value)
-      if (edustaja.etunimi === e.target.etunimi.value) {
+      /*eslint-disable */
+      const edustaja = this.state.array.find(x => x.sukunimi.toLowerCase() === e.target.sukunimi.value.toLowerCase())
+      /* eslint-enable */
+      if (edustaja.etunimi.toLowerCase() === e.target.etunimi.value.toLowerCase()) {
         this.props.addEdustaja(edustaja)
       }
     }
@@ -40,11 +41,9 @@ class EtsiVastaus extends React.Component {
 
 
     render() {
-      console.log('proops', this.props)
       if (this.props.edustaja) {
-        const sliced = this.state.array.slice(0, 99)
         return (
-          <Vastaukset sliced={sliced} />
+          <Vastaukset />
         )
       }
       return (

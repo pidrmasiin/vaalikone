@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Item, Grid, Header } from 'semantic-ui-react';
+import { Button, Item, Grid, Header, Divider } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import { addVastaus, addKysymys } from '../reducers/kayttajaReducer';
 import VastausTable from './form/VastausTable';
-
 
 class Kone extends React.Component {
   constructor(props) {
@@ -16,26 +16,26 @@ class Kone extends React.Component {
     };
   }
 
-  componentWillMount = () => {
-    if (this.props.kysymykset.length !== 0) {
-      if (this.props.kysymykset.length !== this.props.kayttaja.kysymykset.length) {
-        const apu = this.props.kysymykset;
-        const uusiKysymys = apu[Math.floor(Math.random() * apu.length)];
-        this.props.addKysymys(uusiKysymys);
-        if (this.state.kysymykset.filter(k => k.kysymys === uusiKysymys.kysymys).length < 1) {
-          const copy = this.state.kysymykset;
-          copy.push(uusiKysymys);
-          this.setState({
-            kysymys: uusiKysymys,
-            kysymykset: copy,
-          });
-        } else {
-          this.componentWillMount();
-        }
-      }
+  componentDidMount = () => {
+    const apu = this.props.kysymykset
+    const uusiKysymys = apu[Math.floor(Math.random() * apu.length)];
+    const copy = this.state.kysymykset;
+    const ehto2 = copy.find(x => x.kysymys === uusiKysymys.kysymys)
+    const ehto = this.props.kayttaja.kysymykset.filter(k => k.kysymys === uusiKysymys.kysymys)
+    if (this.state.kysymykset.length === 0) {
+      copy.push(uusiKysymys);
+      this.setState({
+        kysymys: uusiKysymys,
+        kysymykset: copy,
+      });
+    } else if (ehto.length === 0 && !ehto2) {
+      copy.push(uusiKysymys);
+      this.setState({
+        kysymys: uusiKysymys,
+        kysymykset: copy,
+      });
     }
   }
-
   show = () => {
     this.setState({
       show: !this.state.show,
@@ -49,47 +49,44 @@ class Kone extends React.Component {
   }
 
   vastaus = (vastaus) => {
-    const userKysymys = this.props.kayttaja.kysymykset.filter(k => k.id === this.state.kysymys.id);
-    if (!userKysymys[0].vastaus) {
-      userKysymys[0].vastaus = vastaus;
-      this.props.addKysymys(userKysymys[0]);
-      const jaaPuolueet = userKysymys[0].puolueet.filter(p => p.kanta === 'jaa');
+    this.props.addKysymys(this.state.kysymys);
+    const jaaPuolueet = this.state.kysymys.puolueet.filter(p => p.kanta === vastaus);
+    const help = this.props.kayttaja.kysymykset.find(x => x.kysymys === this.state.kysymys.kysymys)
+    if (!help) {
       for (let i = 0; i < jaaPuolueet.map(p => p.nimi).length; i = i + 1) {
         this.props.addVastaus(jaaPuolueet.map(p => p.nimi)[i]);
       }
     }
-    this.componentWillMount();
+    this.componentDidMount();
   }
 
   render() {
-    console.log('state', this.state)
     const visible = { display: this.state.show ? '' : 'none' };
     const tulokset = { display: this.state.tulokset ? '' : 'none' };
 
     if (this.props.kayttaja.kysymykset.length === this.props.kysymykset.length) {
       return (
         <div>
-          <h3>
-            Olet vastannut kaikkiin kysymyksiin. Uudelleen lataa sivu, jos haluat vastata uudelleen.
-          </h3>
-          <h3>Tulokset:</h3>
+          <h1>Kysymykset ja tulokset</h1>
+          <Button onClick={this.show} size="mini" inverted color="blue">Näytä/piilota kysymykset</Button>
+          {this.state.show && this.props.kayttaja.kysymykset.map(k =>
+            <Item style={{ background: 'AliceBlue' }}key={k.id}><Link to={`/kysymykset/${k.id}`}>{k.kysymys}</Link><Divider /></Item>)}
           <VastausTable />
-          <Grid.Row />
-          <h3>
-            Olet vastannut kaikkiin kysymyksiin. Uudelleen lataa sivu, jos haluat vastata uudelleen.
-          </h3>
-          <Grid.Row />
         </div>
       );
     }
     if (!this.state.kysymys) {
-      window.location.assign('/')
+      // window.location.assign('/')
       return (
         <div />
       )
     }
+    const help = this.props.kayttaja.kysymykset.find(x => x.kysymys === this.state.kysymys.kysymys)
+    if (help) {
+      this.componentDidMount()
+    }
     return (
-      <Grid>
+      <Grid style={{ background: '#eff5f5' }}>
         <Grid.Row />
         <Grid.Row>
           <Grid.Column width={1} />
@@ -113,7 +110,7 @@ class Kone extends React.Component {
           <Grid.Column width={9}>
             <Item>
               <Item.Content>
-                <Item.Header><h2>{this.props.kayttaja.kysymykset.length}. {this.state.kysymys.kysymys} <Button onClick={this.show} size="mini" basic>Lisätietoja</Button></h2></Item.Header>
+                <Item.Header><h2>{this.props.kayttaja.kysymykset.length + 1}. {this.state.kysymys.kysymys} <Button onClick={this.show} size="mini" basic>Lisätietoja</Button></h2></Item.Header>
                 <Item.Description style={visible}>
                   <ul>
                     <li>{this.state.kysymys.selitys}</li>

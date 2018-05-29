@@ -1,4 +1,3 @@
-import kategoriatService from '../services/kategoria'
 
 const vastausKategoriat = {
   sosiaalipolitiikka: ['147|Kansalaisten oikeus terveyspalveluihin on tärkeämpää kuin kuntien itsehallinto.', '146|Vanhuksen ja hänen omaistensa vastuuta hoitokustannuksista on lisättävä.', '145|Viranomaisten pitää puuttua lapsiperheiden ongelmiin nykyistä herkemmin.', '144|Terveys- ja sosiaalipalvelut on tuotettava ensijaisesti julkisina palveluina.', '143|Parantumattomasti sairaalla on oltava oikeus avustettuun kuolemaan.', '127|Suomessa on liian helppo elää sosiaaliturvan varassa', '129|Suomessa on siirryttävä perustuloon joka korvaisi nykyisen sosiaaliturvan vähimmäistason.', '135|Lapsilisiä on korotettava ja laitettava verolle.', '136|Suomella ei ole varaa nykyisen laajuisiin sosiaali- ja terveyspalveluihin.'],
@@ -16,29 +15,4 @@ const vastausKategoriat = {
   koulutus: ['152|Peruskoulun opetusryhmien koko on rajattava lailla esimerkiksi 20 oppilaaseen.'],
 }
 
-const kategoriatReducer = (store = [], action) => {
-  if (action.type === 'GET_GATEGORIES') {
-    return action.data
-  } if (action.type === 'ADD_GATEGORIES') {
-    return store.concat(action.data)
-  }
-  return store
-}
-
-export const getKategoriat = () => async (dispatch) => {
-  const all = await kategoriatService.getAll()
-  dispatch({
-    type: 'GET_GATEGORIES',
-    data: all,
-  })
-}
-
-export const addKategoriat = kategoria => async (dispatch) => {
-  const one = await kategoriatService.addKategoria(kategoria);
-  dispatch({
-    type: 'ADD_GATEGORIES',
-    data: one,
-  })
-}
-
-export default kategoriatReducer
+export default vastausKategoriat

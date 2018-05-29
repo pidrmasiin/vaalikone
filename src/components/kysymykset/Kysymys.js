@@ -1,5 +1,6 @@
 import React from 'react';
-import { Item, Container, List, Button, Grid, Checkbox, TextArea, Divider } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+import { Item, Container, List, Button, Grid, Checkbox, TextArea, Divider, Table } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import kysymysService from './../../services/kysymys'
 
@@ -8,7 +9,9 @@ class Kysymys extends React.Component {
     kategoriat: false,
     muokkaa: false,
     muokattava: null,
+    show: false,
   }
+
 
   onSubmit = async (e) => {
     const kysymys = this.props.kysymys
@@ -54,7 +57,14 @@ class Kysymys extends React.Component {
       muokattava: x,
     })
   }
+
+  show = () => {
+    this.setState({
+      show: !this.state.show,
+    });
+  }
   render() {
+    console.log('this.props', this.props)
     if (this.props.kysymys) {
       return (
         <Container style={{ background: '#eff5f5' }}>
@@ -107,17 +117,33 @@ class Kysymys extends React.Component {
                     <Item.Content>
                       <Item.Header>{this.props.kysymys.kysymys} </Item.Header>
                       <Item.Description>
-                        {this.props.kysymys.selitys}
+                        <Button size="mini" basic onClick={this.show}>Lisätietoja</Button>
+                        {this.state.show && <div>{this.props.kysymys.selitys}<br /></div>}
                       </Item.Description>
                       <List>
                         <b>Kategoriat</b>
                         <List.List>
                           {this.props.kysymys.kategoriat.map(x =>
-                            <List.Item as="li" key={x._id}>{x.nimi}</List.Item>)}
+                            (
+                              <List.Item as="li" key={x._id}><Link to={`/kategoriat/${x._id}`}>{x.nimi}</Link>
+                              </List.Item>))}
                         </List.List>
                       </List>
+                      <List>
+                        <b>Puolueiden kannat</b>
+                        <Table celled>
+                          <Table.Body style={{ background: 'AliceBlue' }}>
+                            {this.props.kysymys.puolueet.map(x =>
+                            (
+                              <Table.Row key={x.nimi}>
+                                <Table.Cell>{x.nimi}</Table.Cell>
+                                <Table.Cell>{x.kanta}</Table.Cell>
+                              </Table.Row>))}
+                          </Table.Body>
+                        </Table>
+                      </List>
                       <Item.Extra>
-                        <a href={this.props.kysymys.url}>{this.props.kysymys.url}</a>
+                        <a href={this.props.kysymys.url}>Linkki eduskunnan sivuille</a>
                       </Item.Extra>
                     </Item.Content>
                   </Item>
@@ -128,6 +154,7 @@ class Kysymys extends React.Component {
 
               </Grid.Column>
             </Grid.Row>
+            <Grid.Row />
           </Grid>
         </Container>
       )
@@ -140,6 +167,7 @@ class Kysymys extends React.Component {
 
 const mapStateToProps = state => ({
   kategoriat: state.kategoriat,
+  kayttaja: state.kayttaja,
 })
 
 export default connect(

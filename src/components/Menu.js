@@ -36,6 +36,9 @@ class Nav extends React.Component {
             <Link style={linkStyle} to="/kysymykset">Kysymykset</Link>
           </Menu.Item>
           <Menu.Item>
+            <Link style={linkStyle} to="/vastaukset">Vastaukset</Link>
+          </Menu.Item>
+          <Menu.Item>
             <Link style={linkStyle} to="/kategoriat">Kategoriat</Link>
           </Menu.Item>
           {window.localStorage.getItem('loggedUser') &&

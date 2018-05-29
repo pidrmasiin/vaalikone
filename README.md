@@ -34,6 +34,9 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |22.5	| 5	| Kysymysten ja kategorioiden poisto ja muokkaus toiminto kuntoon.(Backend)|
 |23.5	| 3	| CSV-parserin opettelua|
 |28.5	| 4	| CSV-tiedoston kanssa sähläämistä. (Haku toiminto yksittäisille edustajille)|
+|29.5	| 8	| Ylen vaalikone vastausten ja eduskunnan vastausten linkittämistä kategorioittain yms.|
+
+Yhteensä: 88.5
 
 
 
