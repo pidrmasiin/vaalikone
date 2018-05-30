@@ -11,6 +11,7 @@ const initialState = {
     { name: 'Vasemmistoliiton eduskuntaryhmä', aanet: 0 },
     { name: 'Sininen eduskuntaryhmä', aanet: 0 },
   ],
+  puolue: '',
 }
 
 const kayttajaReducer = (store = initialState, action) => {
@@ -25,6 +26,10 @@ const kayttajaReducer = (store = initialState, action) => {
     const old = store.kysymykset.filter(k => k.id !== action.kysymys.id)
     old.push(action.kysymys)
     return { ...store, kysymykset: old }
+  }
+
+  if (action.type === 'PUOLUE') {
+    return { ...store, puolue: action.puolue }
   }
 
   switch (action.type) {
@@ -55,6 +60,13 @@ export const addKysymys = content => async (dispatch) => {
   dispatch({
     type: 'VASTAUS',
     kysymys: content,
+  })
+}
+
+export const addPuolue = content => async (dispatch) => {
+  dispatch({
+    type: 'PUOLUE',
+    puolue: content,
   })
 }
 

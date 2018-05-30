@@ -1,33 +1,64 @@
 import _ from 'lodash'
 import React from 'react';
-import { Table } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import Kannat from '../puolueidenKannat/Kannat'
+import { addPuolue } from '../../reducers/kayttajaReducer'
 
 
 class VastausTable extends React.Component {
-    componentDidMount = () => {
+  state= {
+    kannat: false,
+  }
+    kannat = (puolue) => {
+      if (puolue) {
+        const testDiv = document.getElementById('vastausTable')
+        window.scrollTo(0, testDiv.offsetTop)
+        this.props.addPuolue(puolue)
+        this.setState({
+          kannat: true,
+        })
+      } else {
+        this.setState({
+          kannat: false,
+        })
+      }
     }
+
     render() {
       const monta = this.props.kayttaja.kysymykset.length
       return (
-        <Table celled id="table">
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell positive>Eduskuntaryhmä</Table.HeaderCell>
-              <Table.HeaderCell>
-                  Monta kertaa samaa mieltä ({monta} kysymykseen vastattu)
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {_.orderBy(this.props.kayttaja.puolueet, ['aanet'], ['desc']).map(x =>
+        <div id="vastausTable">
+          {this.state.kannat &&
+          <div>
+            <Kannat />
+            <Button basic onClick={() => this.kannat()}>
+              Piilota kannat
+            </Button>
+          </div>
+            }
+          <Table celled id="table">
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell positive>Eduskuntaryhmä</Table.HeaderCell>
+                <Table.HeaderCell>
+                  Kuinka sopiva puolue ({monta} kysymykseen vastattu)
+                </Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {_.orderBy(this.props.kayttaja.puolueet, ['aanet'], ['desc']).map(x =>
               (
                 <Table.Row key={x.name}>
-                  <Table.Cell>{x.name}</Table.Cell>
+                  <Table.Cell>
+                    {x.name}
+                    <Button size="mini" basic onClick={() => this.kannat(x.name)}>Kannat</Button>
+                  </Table.Cell>
                   <Table.Cell>{Math.round((x.aanet / monta) * 100)} %</Table.Cell>
                 </Table.Row>))}
-          </Table.Body>
-        </Table>
+            </Table.Body>
+          </Table>
+        </div>
       )
     }
 }
@@ -36,4 +67,7 @@ const mapStateToProps = state => ({
   kayttaja: state.kayttaja,
 })
 
-export default connect(mapStateToProps)(VastausTable)
+export default connect(
+  mapStateToProps,
+  { addPuolue },
+)(VastausTable)

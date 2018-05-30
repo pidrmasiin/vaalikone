@@ -16,7 +16,7 @@ class Kone extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     const apu = this.props.kysymykset
     const uusiKysymys = apu[Math.floor(Math.random() * apu.length)];
     const copy = this.state.kysymykset;
@@ -57,7 +57,7 @@ class Kone extends React.Component {
         this.props.addVastaus(jaaPuolueet.map(p => p.nimi)[i]);
       }
     }
-    this.componentDidMount();
+    this.componentWillMount();
   }
 
   render() {
@@ -67,8 +67,9 @@ class Kone extends React.Component {
     if (this.props.kayttaja.kysymykset.length === this.props.kysymykset.length) {
       return (
         <div>
-          <h1>Kysymykset ja tulokset</h1>
-          <Button onClick={this.show} size="mini" inverted color="blue">Näytä/piilota kysymykset</Button>
+          <h1>Kysymykset ja tulokset {'  '}
+            <Button onClick={this.show} size="mini" basic>{this.state.show ? 'Piilota' : 'Näytä'} kysymykset</Button>
+          </h1>
           {this.state.show && this.props.kayttaja.kysymykset.map(k =>
             <Item style={{ background: 'AliceBlue' }}key={k.id}><Link to={`/kysymykset/${k.id}`}>{k.kysymys}</Link><Divider /></Item>)}
           <VastausTable />
@@ -76,14 +77,14 @@ class Kone extends React.Component {
       );
     }
     if (!this.state.kysymys) {
-      // window.location.assign('/')
+      window.location.assign('/')
       return (
         <div />
       )
     }
     const help = this.props.kayttaja.kysymykset.find(x => x.kysymys === this.state.kysymys.kysymys)
     if (help) {
-      this.componentDidMount()
+      this.componentWillMount()
     }
     return (
       <Grid style={{ background: '#eff5f5' }}>

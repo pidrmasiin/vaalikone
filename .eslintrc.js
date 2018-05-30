@@ -8,7 +8,8 @@ module.exports = {
         "semi": 0,
         "operator-assignment": ["error", "never"],
         "no-underscore-dangle": 0,
-        "prefer-destructuring": 0
+        "prefer-destructuring": 0,
+        "react/jsx-no-bind": 0
     },
     "globals": {
         "document": false

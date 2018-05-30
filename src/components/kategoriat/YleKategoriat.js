@@ -25,7 +25,7 @@ class YleKategoriat extends React.Component {
               {this.props.vastaukset.vastaukset.map(k =>
                 (
                   <Item style={{ background: 'AliceBlue' }}key={k}>{k}<Divider /></Item>))}
-              <Button mini basic onClick={this.nayta}>
+              <Button basic onClick={this.nayta}>
                 Piilota kategoriaan linkitetyt ylen koneen kysymykset
               </Button>
             </div>

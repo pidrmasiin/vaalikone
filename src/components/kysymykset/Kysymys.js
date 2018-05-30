@@ -10,6 +10,8 @@ class Kysymys extends React.Component {
     muokkaa: false,
     muokattava: null,
     show: false,
+    puolueet: false,
+    edustajat: false,
   }
 
 
@@ -63,8 +65,18 @@ class Kysymys extends React.Component {
       show: !this.state.show,
     });
   }
+
+  puolueet = () => {
+    this.setState({
+      puolueet: !this.state.puolueet,
+    });
+  }
+  edustajat = () => {
+    this.setState({
+      edustajat: !this.state.edustajat,
+    });
+  }
   render() {
-    console.log('this.props', this.props)
     if (this.props.kysymys) {
       return (
         <Container style={{ background: '#eff5f5' }}>
@@ -130,9 +142,12 @@ class Kysymys extends React.Component {
                         </List.List>
                       </List>
                       <List>
-                        <b>Puolueiden kannat</b>
+                        <b>Puolueiden ja edustajien kannat</b>
+                        <br />
+                        <Button size="mini" basic onClick={this.puolueet}>{this.state.puolueet ? 'Piilota' : 'Näytä'}</Button>
+                        {this.state.puolueet &&
                         <Table celled>
-                          <Table.Body style={{ background: 'AliceBlue' }}>
+                          <Table.Body style={{ background: '#fff3e6' }}>
                             {this.props.kysymys.puolueet.map(x =>
                             (
                               <Table.Row key={x.nimi}>
@@ -140,7 +155,31 @@ class Kysymys extends React.Component {
                                 <Table.Cell>{x.kanta}</Table.Cell>
                               </Table.Row>))}
                           </Table.Body>
+                          <Table.Body>
+                            <Table.Row>
+                              <Table.Cell>
+                                <Button size="mini" basic onClick={this.edustajat}>Edustajien kannat</Button>
+                              </Table.Cell>
+                            </Table.Row>
+                          </Table.Body>
+                          {this.state.edustajat &&
+                          <Table.Body style={{ background: 'AliceBlue' }}>
+                            {this.props.kysymys.edustajat.map(x =>
+                            (
+                              <Table.Row key={x.nimi}>
+                                <Table.Cell>{x.nimi}</Table.Cell>
+                                <Table.Cell>{x.kanta}</Table.Cell>
+                              </Table.Row>))}
+                            <Table.Row>
+                              <Table.Cell>
+                                <Button size="mini" basic onClick={this.edustajat}>Piilota edustajien kannat</Button>
+                              </Table.Cell>
+                            </Table.Row>
+                          </Table.Body>
+                          }
+
                         </Table>
+                        }
                       </List>
                       <Item.Extra>
                         <a href={this.props.kysymys.url}>Linkki eduskunnan sivuille</a>
