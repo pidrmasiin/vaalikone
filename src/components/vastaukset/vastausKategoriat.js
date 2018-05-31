@@ -15,4 +15,39 @@ const vastausKategoriat = {
   koulutus: ['152|Peruskoulun opetusryhmien koko on rajattava lailla esimerkiksi 20 oppilaaseen.'],
 }
 
-export default vastausKategoriat
+export const puolueet = [
+  {
+    text: 'Keskusta',
+    value: 'kesk',
+  },
+  {
+    text: 'Kokoomus',
+    value: 'kok',
+  },
+  {
+    text: 'SDP',
+    value: 'sdp',
+  },
+  {
+    text: 'Vihreät',
+    value: 'vihr',
+  },
+  {
+    text: 'Vasemmistoliitto',
+    value: 'vas',
+  },
+  {
+    text: 'RKP',
+    value: 'rkp',
+  },
+  {
+    text: 'Kristillisdemokraatit',
+    value: 'kd',
+  },
+  {
+    text: 'Perussuomalaiset',
+    value: 'ps',
+  },
+]
+
+export default { vastausKategoriat, puolueet }

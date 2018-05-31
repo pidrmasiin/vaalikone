@@ -9,6 +9,7 @@ import { addPuolue } from '../../reducers/kayttajaReducer'
 class VastausTable extends React.Component {
   state= {
     kannat: false,
+    puolue: null,
   }
     kannat = (puolue) => {
       if (puolue) {
@@ -17,10 +18,12 @@ class VastausTable extends React.Component {
         this.props.addPuolue(puolue)
         this.setState({
           kannat: true,
+          puolue,
         })
       } else {
         this.setState({
           kannat: false,
+          puolue: null,
         })
       }
     }
@@ -31,13 +34,16 @@ class VastausTable extends React.Component {
         <div id="vastausTable">
           {this.state.kannat &&
           <div>
-            <Kannat />
-            <Button basic onClick={() => this.kannat()}>
+            <Button color="blue" onClick={() => this.kannat()}>
+              Piilota kannat
+            </Button>
+            <Kannat puolue={this.state.puolue} />
+            <Button color="blue" onClick={() => this.kannat()}>
               Piilota kannat
             </Button>
           </div>
             }
-          <Table celled id="table">
+          <Table striped celled id="table">
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell positive>Eduskuntaryhmä</Table.HeaderCell>

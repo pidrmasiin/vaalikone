@@ -15,6 +15,8 @@ import Login from './components/Login';
 import Notification from './components/Notification';
 import { getKysymykset } from './reducers/kysymyksetReducer';
 import { getKategoriat } from './reducers/kategoriatReducer';
+import { getYlenKysymykset } from './reducers/ylenKysymyksetReducer';
+
 
 import './App.css';
 
@@ -22,6 +24,7 @@ class App extends React.Component {
   componentWillMount = async () => {
     this.props.getKysymykset();
     this.props.getKategoriat();
+    this.props.getYlenKysymykset()
   }
 
   kysymysById = id => (
@@ -84,9 +87,14 @@ const mapStateToProps = state => ({
   user: state.user,
   kysymykset: state.kysymykset,
   kategoriat: state.kategoriat,
+  ylenKysymykset: state.ylenKysymykset,
 });
 
 export default connect(
   mapStateToProps,
-  { getKysymykset, getKategoriat },
+  {
+    getKysymykset,
+    getKategoriat,
+    getYlenKysymykset,
+  },
 )(App);

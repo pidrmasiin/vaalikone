@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox } from 'semantic-ui-react'
+import { Button, Checkbox, Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
 import TextArea from './TextArea'
@@ -8,8 +8,27 @@ import { addPuolueet, addDetails, addEdustajat, addKategoriat } from '../../redu
 import { notifyCreation } from '../../reducers/notifyReducer'
 import Notification from '../Notification'
 import kysymysService from './../../services/kysymys'
+import { addYlePuolueet, getYlenKysymykset } from '../../reducers/ylenKysymyksetReducer';
 
 class HtmlForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      vastaus: '',
+    };
+  }
+  componentWillMount = async () => {
+    if (!this.props.addYlePuolueet.edustajat
+      && this.props.kysymykset[0]) {
+      const nimet = this.props.kysymykset[0].edustajat.map(x => x.nimi)
+      await this.props.getYlenKysymykset()
+      setTimeout(() => {
+        this.props.addYlePuolueet(nimet, this.props.ylenKysymykset.data)
+      }, 1000);
+    } else {
+      window.location.assign('/')
+    }
+  }
   onSubmit = async (e) => {
     this.handleDetails(e)
     await this.handleHtml(e)
@@ -102,6 +121,7 @@ class HtmlForm extends React.Component {
       selitys: e.target.selitys.value,
       kysymys: e.target.kysymys.value,
       vuosi: e.target.vuosi.value,
+      vastaus: this.state.vastaus,
     }
     this.props.addDetails(details)
     e.target.url.value = ''
@@ -120,7 +140,13 @@ class HtmlForm extends React.Component {
     this.props.addKategoriat(idt)
   }
 
+  handleChange(e, { name, value }) {
+    this.setState({ [name]: value })
+  }
   render() {
+    /*eslint-disable */
+   const values = this.props.ylenKysymykset.kysymykset.map(x => x = { text: x, value: x })
+   /* eslint-enable */
     return (
       <div className="container">
         <form onSubmit={this.onSubmit} id="htmlform">
@@ -140,6 +166,8 @@ class HtmlForm extends React.Component {
             />))}
           <br />
           <br />
+          <b>Valitse osuvin kysymys ylen vaalikoneesta</b>
+          <Dropdown type="text" name="vastaus" placeholder="Valitse kysymys" onChange={this.handleChange.bind(this)} fluid search selection options={values} />
           <Notification />
           <TextArea
             placeholder="<table><tbody>...</tbody></table>"
@@ -164,8 +192,10 @@ class HtmlForm extends React.Component {
 const mapStateToProps = state => ({
   html: state.html,
   kysymys: state.kysymys,
+  kysymykset: state.kysymykset,
   notify: state.notify,
   kategoriat: state.kategoriat,
+  ylenKysymykset: state.ylenKysymykset,
 })
 
 export default connect(
@@ -178,5 +208,7 @@ export default connect(
     addDetails,
     notifyCreation,
     addKategoriat,
+    addYlePuolueet,
+    getYlenKysymykset,
   },
 )(HtmlForm)

@@ -6,6 +6,7 @@ const initialState = {
   edustajat: [],
   kategoriat: [],
   vuosi: '',
+  vastaus: '',
 }
 
 const kysymysReducer = (store = initialState, action) => {
@@ -18,6 +19,7 @@ const kysymysReducer = (store = initialState, action) => {
       selitys: action.details.selitys,
       url: action.details.url,
       vuosi: action.details.vuosi,
+      vastaus: action.details.vastaus,
     }
   } if (action.type === 'ADD_EDUSTAJAT') {
     return { ...store, edustajat: action.edustajat }

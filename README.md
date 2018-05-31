@@ -36,8 +36,9 @@ Luon tietojen siirtämiseen tietokantaan lomakkeen, johon kopioin eduskunnan siv
 |28.5	| 4	| CSV-tiedoston kanssa sähläämistä. (Haku toiminto yksittäisille edustajille)|
 |29.5	| 8	| Ylen vaalikone vastausten ja eduskunnan vastausten linkittämistä kategorioittain yms.|
 |30.5	| 9	| Vastausten tarkastelu puolueittain ja alustavaa ylen vastausten kategorisointia|
+|31.5	| 10	| Ylen vastausten kategorisointia suhteessa vaalikoneen kysymyksiin ja kone prototyyppi kuntoon|
 
-Yhteensä: 88.5
+Yhteensä: 107.5
 
 
 
