@@ -36,7 +36,7 @@ class Nav extends React.Component {
             <Link style={linkStyle} to="/kysymykset">Kysymykset</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link style={linkStyle} to="/vastaukset">Vastaukset</Link>
+            <Link style={linkStyle} to="/vastaukset">Vastaukset Ylen koneeseen</Link>
           </Menu.Item>
           <Menu.Item>
             <Link style={linkStyle} to="/kategoriat">Kategoriat</Link>
