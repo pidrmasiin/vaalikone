@@ -1,6 +1,6 @@
 # Vaalikone
 
-HUOM!Uusi ulkoasu täällä * [vaalikone2.0](https://github.com/jarihartzell/vaalikone2.0)
+# HUOM!Uusi ulkoasu täällä * [vaalikone2.0](https://github.com/jarihartzell/vaalikone2.0)
 
 Ajatuksena tehdä vaalikone, jossa kysymykset ja vastaukset haetaan eduskunnan sivuilta. Ajatuksena on tarkastella aluksi vain puoluekantaa, mutta jos innostun, lisään vaalikoneeseen myös tiedot äänestyksistä edustajittain.
 
